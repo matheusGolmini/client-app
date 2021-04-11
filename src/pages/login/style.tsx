@@ -3,8 +3,10 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 32,
-        backgroundColor: '#8080ff'
+        backgroundColor: '#d3d3d3',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
     },
 
     logo: {
@@ -19,20 +21,28 @@ const styles = StyleSheet.create({
     input: {
         marginTop: 10,
         padding: 10,
-        height: 60,
-        backgroundColor: '#FFF',
+        width: 300,
+        height: 40,
+        backgroundColor: '#fff',
         borderRadius: 15,
         fontSize: 16,
         fontWeight: 'bold',
-        color: 'black'
     },
 
     button: {
         backgroundColor: '#FFF',
+        marginTop: 10,
+        width: 300,
         height: 60,
         flexDirection: 'row',
         borderRadius: 10,
         overflow: 'hidden',
+        alignItems: 'center',
+    },
+
+    textClick: {
+        marginTop: 10,
+        flexDirection: 'row',
         alignItems: 'center',
     },
 
@@ -43,6 +53,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center'
+    },
+
+    headerText: { 
+        fontSize: 25,
+        color: 'black',
+        marginBottom:10,
+        marginTop:50,
+        alignSelf:"center",
+        fontWeight:"bold"
     },
 
     buttonText: {
