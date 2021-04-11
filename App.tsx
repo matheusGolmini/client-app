@@ -1,14 +1,14 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 
-import Login from './src/pages/login';
+import Routes from './src/routes';
 
 
 export default function App() {
   return (
     <>
-      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent/>
-      <Login />
+      <StatusBar barStyle="dark-content" backgroundColor="#d3d3d3" translucent/>
+      <Routes />
     </>
   );
 }
