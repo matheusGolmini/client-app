@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { View, Image, Text, TextInput, TouchableOpacity } from 'react-native';
-
 import styles from './style';
 
 const Login = () => {
+    const [password, setPassword] = useState('');
+    const[email, setEmail] = useState('');
     const navigation = useNavigation();
 
-    function navigateToHome(){
+
+    function navigateToHome() {
         navigation.navigate('Home');
     }
 
@@ -16,22 +18,14 @@ const Login = () => {
     }
 
     async function login() {
-        // const data = ({
-        //     email: email.toLowerCase(),
-        //     password
-        // })
+        console.log('email:', email.toLocaleLowerCase());
+        console.log('password:', password)
         try {
-            // const response = await api.post('users/login', data);
-            // if(!response.data){
-            //     Alert.alert("Você não foi encontrado na base")
-            // }else{
-                navigateToHome()
-            // }
+            navigateToHome()
         } catch (error) {
             alert('Deu ruim')
         }
     }
-
 
 
     return (
@@ -41,13 +35,13 @@ const Login = () => {
 
             <TextInput 
                 style={styles.input} 
-                onChangeText={(val) => {}}
+                onChangeText={(val) => setEmail(val)}
                 placeholder='Digite seu E-mail' 
             />
             <TextInput 
                 style={styles.input} 
                 secureTextEntry={true} 
-                onChangeText={(val) => {}}
+                onChangeText={(val) => setPassword(val)}
                 placeholder='Digite sua senha' 
             />
             <View style={{marginTop: 20}}> 
@@ -66,9 +60,7 @@ const Login = () => {
                 </TouchableOpacity>
 
             </View>
-            
         </View>
-       
     )
 }
 
