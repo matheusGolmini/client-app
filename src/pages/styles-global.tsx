@@ -13,9 +13,8 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150,
         borderRadius: 100,
-        marginLeft: 15,
-        alignSelf: 'center',
-        backgroundColor: 'transparent'
+        marginLeft: 15
+        // backgroundColor: 'transparent'
     },
 
     input: {

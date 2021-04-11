@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { View, Image, Text, TextInput, TouchableOpacity } from 'react-native';
-import styles from './style';
+import stylesGlobal from '../styles-global';
 
 const Login = () => {
     const [password, setPassword] = useState('');
@@ -29,34 +29,34 @@ const Login = () => {
 
 
     return (
-        <View style={styles.container}>
-            <Image style={styles.logo} source={require('../../assets/home.jpg')}/>
-            <Text style={ styles.headerText }>Seja bem vindo!</Text>
+        <View style={stylesGlobal.container}>
+            <Image style={stylesGlobal.logo} source={require('../../assets/home.jpg')}/>
+            <Text style={ stylesGlobal.headerText }>Seja bem vindo!</Text>
 
             <TextInput 
-                style={styles.input} 
+                style={stylesGlobal.input} 
                 onChangeText={(val) => setEmail(val)}
                 placeholder='Digite seu E-mail' 
             />
             <TextInput 
-                style={styles.input} 
+                style={stylesGlobal.input} 
                 secureTextEntry={true} 
                 onChangeText={(val) => setPassword(val)}
                 placeholder='Digite sua senha' 
             />
             <View style={{marginTop: 20}}> 
                 <TouchableOpacity 
-                    style={styles.button}
+                    style={stylesGlobal.button}
                     onPress={login}
                 >
-                    <Text style={styles.buttonText}>Login</Text>
+                    <Text style={stylesGlobal.buttonText}>Login</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity 
-                    style={styles.textClick}
+                    style={stylesGlobal.textClick}
                     onPress={navigateToRegister}
                 >
-                    <Text style={styles.buttonText}>Inscreva-se!</Text>
+                    <Text style={stylesGlobal.buttonText}>Inscreva-se!</Text>
                 </TouchableOpacity>
 
             </View>
