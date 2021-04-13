@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#d3d3d3',
+        backgroundColor: '#fff',
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
@@ -14,22 +14,21 @@ const styles = StyleSheet.create({
         height: 150,
         borderRadius: 100,
         marginLeft: 15
-        // backgroundColor: 'transparent'
     },
 
-    input: {
-        marginTop: 10,
-        padding: 10,
-        width: 300,
-        height: 40,
-        backgroundColor: '#fff',
-        borderRadius: 15,
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
+    // input: {
+    //     marginTop: 10,
+    //     padding: 10,
+    //     width: 300,
+    //     height: 40,
+    //     backgroundColor: '#fff',
+    //     borderRadius: 15,
+    //     fontSize: 16,
+    //     fontWeight: 'bold',
+    // },
 
     button: {
-        backgroundColor: '#FFF',
+        backgroundColor: '#4169E1',
         marginTop: 10,
         width: 300,
         height: 60,
@@ -56,9 +55,9 @@ const styles = StyleSheet.create({
 
     headerText: { 
         fontSize: 25,
-        color: 'black',
+        color: '#4169E1',
         marginBottom:10,
-        marginTop:50,
+        marginTop: 30,
         alignSelf:"center",
         fontWeight:"bold"
     },
@@ -67,14 +66,50 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         textAlign: 'center',
-        color: 'black',
-        fontSize: 16,
+        color: 'white',
+        fontSize: 18,
         fontWeight: 'bold',
     },
 
-    footer: {
-        marginTop: 300
-    }
+    inputAreaPassword: {
+        marginTop: 10,
+        padding: 10,
+        width: 300,
+        height: 50,
+        backgroundColor: '#4169E1',
+        borderRadius: 10,
+        fontWeight: 'bold',
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+
+    inputPass: {
+        width: '85%',
+        backgroundColor: '#4169E1',
+        height: 50,
+        padding: 8,
+        fontSize: 16,
+        color: '#FFF',
+        fontWeight: 'bold',
+    },
+    input: {
+        marginTop: 10,
+        padding: 10,
+        width: 300,
+        height: 50,
+        backgroundColor: '#4169E1',
+        borderRadius: 10,
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: "#FFF"
+    },
+    iconEye: {
+        width: '15%',
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#4169E1'
+    },
 })
 
 export default styles;
