@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
 import Footer from '../../components/footer';
 import FlatListJobs from '../../components/flatListJobs';
 import { Skills } from '../../interfaces/skills';
