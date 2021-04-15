@@ -12,8 +12,8 @@ export default function FlatListJobs(skills: { props: Skills[]}) {
     // console.log(skills.props)
     const navigation = useNavigation();
 
-    function logout(){
-        navigation.navigate('Login');
+    function navigateToSkill() {
+        navigation.navigate('Skill');
     }
     
     // console.log(Imag)
@@ -33,7 +33,7 @@ export default function FlatListJobs(skills: { props: Skills[]}) {
 
                     <TouchableOpacity 
                         style={styles.tasksButton} 
-                        onPress={() => {}}
+                        onPress={navigateToSkill}
                     >
                         <Text style={{...styles.buttonText, color: skill.color}}> Ver mais detalhes</Text>
                         <Feather name="arrow-right" size={25} color={skill.color}/>
