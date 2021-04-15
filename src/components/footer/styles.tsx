@@ -7,7 +7,7 @@ export default StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        height:60,
+        height: 60,
         flexDirection: 'row',
         justifyContent: 'center',
         backgroundColor: '#A9A9A9',
