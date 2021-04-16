@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Footer from '../../components/footer';
-import FlatListJobs from '../../components/flatListJobs';
+import FlatListSkills from '../../components/flatListSkills';
 import { Skills } from '../../interfaces/skills';
 
 const Home = () => {
@@ -45,7 +45,7 @@ const Home = () => {
     if(!!skills.length){
         return (
             <>
-                <FlatListJobs props={skills}/>
+                <FlatListSkills props={skills}/>
                 <Footer props={null}/>
             </>
         )

@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack";
-import Login from './pages/login';
-import Home from './pages/home';
+import Login from './pages/Login';
+import Home from './pages/Home';
 import Register from './pages/Register';
-import Skill from './pages/skill';
+import ServiceProvider from './pages/ServiceProvider';
+import PerfilServiceProvider from './pages/PerfilServiceProvider';
 
 const AppStack = createStackNavigator();
 
@@ -16,7 +17,8 @@ export default function Routes(){
                <AppStack.Screen name='Login' component={Login} />
                <AppStack.Screen name="Home" component={Home} />
                <AppStack.Screen name="Register" component={Register} />
-               <AppStack.Screen name="Skill" component={Skill} />
+               <AppStack.Screen name="ServiceProvider" component={ServiceProvider} />
+               <AppStack.Screen name="PerfilServiceProvider" component={PerfilServiceProvider} />
            </AppStack.Navigator>
        </NavigationContainer>
     )

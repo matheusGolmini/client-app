@@ -8,8 +8,9 @@ interface router {
     name: string
 }
 
-const Skill = () => {
+const PerfilServiceProvider = () => {
     const route = useRoute<router>();
+
     return (
         <>
             <Footer props={route.params.footerColor}/>
@@ -17,4 +18,4 @@ const Skill = () => {
     )
 }
 
-export default Skill;
+export default PerfilServiceProvider;
