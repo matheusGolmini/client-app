@@ -20,8 +20,6 @@ const Login = () => {
     }
 
     async function login() {
-        // console.log('email:', email.toLocaleLowerCase());
-        // console.log('password:', password)
         try {
             navigateToHome()
         } catch (error) {

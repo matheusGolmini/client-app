@@ -6,7 +6,7 @@ import styles from './styles';
 import { useNavigation } from '@react-navigation/core';
 
 export default function Footer(color: { props: string | null}) {
-    const [backgroundColor, setBackgroundColor] = useState<string>('transparent');
+    const [backgroundColor, setBackgroundColor] = useState<string>('#A9A9A9');
     const navigation = useNavigation();
 
     useEffect(()=> {

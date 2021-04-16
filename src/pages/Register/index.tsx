@@ -24,7 +24,7 @@ const Register = () => {
         aspect: [4, 3],
         quality: 1,
         });
-        // console.log(result);
+
         if (!result.cancelled) {
         setImage(result.uri);
         }
@@ -35,8 +35,6 @@ const Register = () => {
     }
 
     async function register () {
-        // console.log(email , ' : ', conEmail)
-        // console.log(password , ' : ', conPassword)
         const data = ({
             email: email.toLowerCase(),
             password,
@@ -47,7 +45,7 @@ const Register = () => {
             is_admin: false
         });
         try {
-            // console.log(data);
+            console.log(data);
             navigateToLogin();
         
         } catch (error) {

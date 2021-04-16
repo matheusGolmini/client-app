@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
@@ -12,7 +12,6 @@ export default function FlatListJobs(skills: { props: Skills[]}) {
 
 
     function navigateToSkill(footerColor: string) {
-        console.log(footerColor)
         navigation.navigate('Skill', { footerColor });
     }
 
