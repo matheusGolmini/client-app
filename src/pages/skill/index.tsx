@@ -1,11 +1,18 @@
+import { useRoute } from '@react-navigation/core';
 import React from 'react';
-import Footer from '../../components/footer'
+import Footer from '../../components/footer';
+
+interface router {
+    params : { footerColor: string}
+    key: string;
+    name: string
+}
 
 const Skill = () => {
-
+    const route = useRoute<router>();
     return (
         <>
-            <Footer />
+            <Footer props={route.params.footerColor}/>
         </>
     )
 }

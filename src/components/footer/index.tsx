@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 import styles from './styles'; 
 import { useNavigation } from '@react-navigation/core';
 
-export default function Footer(){
+export default function Footer(color: { props: string | null}) {
+    const [backgroundColor, setBackgroundColor] = useState<string>('transparent');
     const navigation = useNavigation();
+
+    useEffect(()=> {
+        if(!!color.props) {
+            setBackgroundColor(color.props);
+        }
+    }, []);
+
     function logout(){
         navigation.navigate('Login');
     }
@@ -22,7 +30,7 @@ export default function Footer(){
 
     
     return (
-        <View style={styles.footer}>
+        <View style={{...styles.footer, backgroundColor: backgroundColor}}>
            <TouchableOpacity 
                 style={styles.button}
                 onPress={navigateToHome}

@@ -46,14 +46,14 @@ const Home = () => {
         return (
             <>
                 <FlatListJobs props={skills}/>
-                < Footer />
+                <Footer props={null}/>
             </>
         )
 
     }else {
         return (
             <>
-                < Footer />
+                <Footer props={null}/>
             </>
         )
     }

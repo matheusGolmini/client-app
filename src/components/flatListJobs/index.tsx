@@ -6,17 +6,15 @@ import styles from './styles';
 import { useNavigation } from '@react-navigation/core';
 import { FlatList } from 'react-native-gesture-handler';
 import { Skills } from '../../interfaces/skills';
-// import Imag from '../../assets/favicon.png'
 
 export default function FlatListJobs(skills: { props: Skills[]}) {
-    // console.log(skills.props)
     const navigation = useNavigation();
 
-    function navigateToSkill() {
-        navigation.navigate('Skill');
+
+    function navigateToSkill(footerColor: string) {
+        console.log(footerColor)
+        navigation.navigate('Skill', { footerColor });
     }
-    
-    // console.log(Imag)
 
     return (
         <View style={styles.container}>
@@ -33,7 +31,7 @@ export default function FlatListJobs(skills: { props: Skills[]}) {
 
                     <TouchableOpacity 
                         style={styles.tasksButton} 
-                        onPress={navigateToSkill}
+                        onPress={() => navigateToSkill(skill.color)}
                     >
                         <Text style={{...styles.buttonText, color: skill.color}}> Ver mais detalhes</Text>
                         <Feather name="arrow-right" size={25} color={skill.color}/>

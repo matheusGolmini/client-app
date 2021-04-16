@@ -10,7 +10,6 @@ export default StyleSheet.create({
         height: 60,
         flexDirection: 'row',
         justifyContent: 'center',
-        backgroundColor: '#4169E1',
     },
     power:{
         alignItems: 'center'
