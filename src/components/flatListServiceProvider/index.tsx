@@ -31,10 +31,19 @@ export default function FlatListServiceProvider(propsComponent: PropsComponent) 
                 showsVerticalScrollIndicator={false}    
                 renderItem={({item: serviceProvider})=> (
                 <View style={ { ...styles.task, borderColor: propsComponent.props.color }}>
-                    <Text style={{...styles.title, color: propsComponent.props.color}}>{serviceProvider.name}</Text>
-                    <Text style={{...styles.description, color: propsComponent.props.color}}>{serviceProvider.time_experience}</Text>
-                    <Image style={styles.logo} source={{uri: serviceProvider.image}}/>
-
+                    <Text style={{...styles.text, color: propsComponent.props.color}}>Nome: {serviceProvider.name}</Text>
+            
+                    <Text style={{...styles.text, color: propsComponent.props.color, marginTop: 10}}>
+                        Experiência: 
+                         {
+                            serviceProvider.time_experience > 1 ?
+                            ` ${serviceProvider.time_experience } anos ` 
+                            : serviceProvider.time_experience === 1
+                            ? ` ${serviceProvider.time_experience } ano `: ` Menor que um ano ` 
+                        }
+                    </Text>
+                    
+                    <Image style={{...styles.logo, marginTop: 20}} source={{uri: serviceProvider.image}}/>
                     <TouchableOpacity 
                         style={styles.tasksButton} 
                         onPress={() => navigateToSkill( propsComponent.props.color)}

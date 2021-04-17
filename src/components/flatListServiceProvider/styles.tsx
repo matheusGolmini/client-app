@@ -20,10 +20,15 @@ export default StyleSheet.create({
         marginBottom: 16,
         borderWidth: 10,
     },
-    title: {
+    textDefault: {
         fontSize: 20,
         color: '#41414d',
         fontWeight: 'bold'
+    },
+    text: {
+        fontSize: 18,
+        color: '#41414d',
+        fontWeight: 'bold',
     },
     description: {
         marginTop: 8,
