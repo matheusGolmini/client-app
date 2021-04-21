@@ -27,24 +27,14 @@ export default function FlatListService(propsComponent: PropsComponent) {
         <View style={styles.container}>
             <FlatList 
                 data={propsComponent.props.service}
-                // style={styles.taskList}
                 keyExtractor={(service: IService) => String(service.id)}
                 showsVerticalScrollIndicator={false}    
                 renderItem={({item: service})=> (
                     <View style={ { ...styles.task, borderColor: service.color }}>
-                        <Text style={{...styles.text, color: service.color}}>Nome: {service.name}</Text>
-                
-                        {/* <Text style={{...styles.text, color: service.color, marginTop: 10}}>
-                            Experiência: 
-                            {
-                                service.time_experience > 1 ?
-                                ` ${service.time_experience } anos ` 
-                                : service.time_experience === 1
-                                ? ` ${service.time_experience } ano `: ` Menor que um ano ` 
-                            }
-                        </Text> */}
-                        
+                        <Text style={{...styles.text, color: service.color}}>{service.title}</Text>
+                        <Text style={{...styles.text, color: service.color}}>{service.name}</Text>
                         <Image style={{...styles.logo, marginTop: 20}} source={{uri: service.image}}/>
+
                         <TouchableOpacity 
                             style={styles.tasksButton} 
                             onPress={() => navigateToSkill(service.color)}
