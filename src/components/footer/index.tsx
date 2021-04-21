@@ -19,7 +19,7 @@ export default function Footer(color: { props: string | null}) {
         navigation.navigate('Login');
     }
     function navigateToTasks(){
-        navigation.navigate('Tasks');
+        navigation.navigate('Service');
     }
     function navigateToProfile(){
         navigation.navigate('Profile');
@@ -51,7 +51,7 @@ export default function Footer(color: { props: string | null}) {
                 onPress={navigateToTasks}
             >
                 <Feather name="book" size={25} color="white"/>
-                <Text style={styles.iconText}> ??</Text>
+                <Text style={styles.iconText}>Serviços</Text>
             </TouchableOpacity>
             <TouchableOpacity 
                 style={styles.button}

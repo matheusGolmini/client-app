@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import ServiceProvider from './pages/ServiceProvider';
 import PerfilServiceProvider from './pages/PerfilServiceProvider';
+import Service from './pages/Services';
 
 const AppStack = createStackNavigator();
 
@@ -19,6 +20,7 @@ export default function Routes(){
                <AppStack.Screen name="Register" component={Register} />
                <AppStack.Screen name="ServiceProvider" component={ServiceProvider} />
                <AppStack.Screen name="PerfilServiceProvider" component={PerfilServiceProvider} />
+               <AppStack.Screen name="Service" component={Service} />
            </AppStack.Navigator>
        </NavigationContainer>
     )
