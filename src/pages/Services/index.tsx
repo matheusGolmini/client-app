@@ -94,6 +94,7 @@ const Service = () =>  {
         }}
         style={{marginTop:24}}
       >
+        <Tab.Screen name="Pagar Serviços" component={FinishedServices} />
         <Tab.Screen name="Serviços em andamento" component={ServicesInProgress}/>
         <Tab.Screen name="Serviços finalizados" component={FinishedServices} />
       </Tab.Navigator>
