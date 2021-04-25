@@ -1,47 +1,126 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { Feather } from '@expo/vector-icons';
 
 import styles from './styles'; 
 import { useNavigation } from '@react-navigation/core';
 import { FlatList } from 'react-native-gesture-handler';
-import { IService } from '../../interfaces';
+import { DetailService } from '../../interfaces';
+import Rating from '../../components/Rating'
 
 interface PropsComponent {
     props: {
-        service: IService[]
-        textButton: string,
-        nextPage: string
+        service: DetailService[]
     }
 }
 
-export default function FlatListService(propsComponent: PropsComponent) {
+export function ListUnpaidService(propsComponent: PropsComponent) {
     const navigation = useNavigation();
+    return (
+        <View style={styles.container}>
+        <FlatList 
+            data={propsComponent.props.service}
+            keyExtractor={(service: DetailService) => String(service.id)}
+            showsVerticalScrollIndicator={false}    
+            renderItem={({item: service})=> (
+                <View style={ { ...styles.task, borderColor: service.color }}>
+                    <Image style={styles.logo} source={{uri: service.imageProvider}}/>
+                    <Text style={{...styles.text, color: service.color, marginTop: 15}}>{service.service} {service.nameProvider}</Text>
+                    <Text style={{...styles.text, color: service.color}}>Dias estimados: {service.days} dias</Text>
+                    <Text style={{...styles.text, color: service.color}}>Acordo: {service.combinedContract}</Text>
+                    <Text style={{...styles.text, color: service.color}}>Valor: {service.value} reais</Text>
 
+                    <TouchableOpacity 
+                        style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
+                        onPress={() => {}}
+                    >
+                        <Text style={{...styles.buttonText, color:  'white'}}> Pague o Serviço</Text>
+                    </TouchableOpacity>
 
-    function navigateToSkill(footerColor: string) {
-        navigation.navigate('PerfilServiceProvider', { footerColor });
-    }
+                    <TouchableOpacity 
+                        style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
+                        onPress={() => {}}
+                    >
+                        <Text style={{...styles.buttonText, color:  'white'}}> Falar com {service.nameProvider}</Text>
+                    </TouchableOpacity>
 
+                    <TouchableOpacity 
+                        style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
+                        onPress={() => {}}
+                    >
+                        <Text style={{...styles.buttonText, color:  'white'}}> Ajuda</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+        />
+    </View>  
+    )
+}
+
+export function ListServiceInProgress(propsComponent: PropsComponent) {
     return (
         <View style={styles.container}>
             <FlatList 
                 data={propsComponent.props.service}
-                keyExtractor={(service: IService) => String(service.id)}
+                keyExtractor={(service: DetailService) => String(service.id)}
                 showsVerticalScrollIndicator={false}    
                 renderItem={({item: service})=> (
                     <View style={ { ...styles.task, borderColor: service.color }}>
-                        <Text style={{...styles.text, color: service.color}}>{service.title}</Text>
-                        <Text style={{...styles.text, color: service.color}}>{service.name}</Text>
-                        <Image style={{...styles.logo, marginTop: 20}} source={{uri: service.image}}/>
+                        
+                        <Image style={styles.logo} source={{uri: service.imageProvider}}/>
+                        <Text style={{...styles.text, color: service.color, marginTop: 15}}>{service.service} {service.nameProvider}</Text>
+                        <Text style={{...styles.text, color: service.color}}>Data inicio: 01/02/2021</Text>
+                        <Text style={{...styles.text, color: service.color}}>Acordo: {service.combinedContract}</Text>
+                        <Text style={{...styles.text, color: service.color}}>Data finalização: 01/22/2021</Text>
+                        
+                        <Text style={{...styles.text, color: service.color}}>Valor pago: {service.value} reais</Text>
 
                         <TouchableOpacity 
-                            style={styles.tasksButton} 
-                            onPress={() => navigateToSkill(service.color)}
+                            style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
+                            onPress={() => {}}
                         >
-                            <Text style={{...styles.buttonText, color:  service.color}}> {propsComponent.props.textButton} </Text>
-                            <Feather name="arrow-right" size={25} color={ service.color}/>
+                            <Text style={{...styles.buttonText, color:  'white'}}> Falar com {service.nameProvider}</Text>
                         </TouchableOpacity>
+
+                        <TouchableOpacity 
+                            style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
+                            onPress={() => {}}
+                        >
+                            <Text style={{...styles.buttonText, color:  'white'}}> Ajuda</Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
+            />
+        </View>  
+    )
+}
+
+export function ListServicesFinished(propsComponent: PropsComponent) {
+    return (
+        <View style={styles.container}>
+            <FlatList 
+                data={propsComponent.props.service}
+                keyExtractor={(service: DetailService) => String(service.id)}
+                showsVerticalScrollIndicator={false}    
+                renderItem={({item: service})=> (
+                    <View style={ { ...styles.task, borderColor: service.color }}>
+                        <Image style={styles.logo} source={{uri: service.imageProvider}}/>
+                        <Text style={{...styles.text, color: service.color, marginTop: 15}}>{service.service} {service.nameProvider}</Text>
+                        <Text style={{...styles.text, color: service.color}}>Data inicio: 01/02/2021</Text>
+                        <Text style={{...styles.text, color: service.color}}>Acordo: {service.combinedContract}</Text>
+                        <Text style={{...styles.text, color: service.color}}>Data finalização: 01/22/2021</Text>
+                        
+                        <Text style={{...styles.text, color: service.color}}>Valor pago: {service.value} reais</Text>
+
+                        <Rating />
+                        
+                        <TouchableOpacity 
+                            style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
+                            onPress={() => {}}
+                        >
+                            <Text style={{...styles.buttonText, color:  'white'}}> Ajuda</Text>
+                        </TouchableOpacity>
+
+                        
                     </View>
                 )}
             />

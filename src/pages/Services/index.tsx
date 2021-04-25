@@ -2,54 +2,44 @@ import React, { useState, useEffect } from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import Footer from '../../components/footer';
-import FlatListService from '../../components/flatListServices';
-import { IService } from '../../interfaces';
+import {ListServiceInProgress, ListUnpaidService, ListServicesFinished} from '../../components/flatListServices';
 import ReturnImageNotService from '../../components/notService';
+import { DetailService } from '../../interfaces/service';
+
+import mockService from '../../mocks/mock-detail-service';
 
 
-function ServicesInProgress() {
-  const [service, setService] = useState<IService[]>([]);
+function InitServices() {
+  const [service, setService] = useState<DetailService[]>([]);
   useEffect(() => {
       getService();
   }, []);
 
   function getService() {
-    setService([
-      {
-        id: '1',
-        name: 'Henrique',
-        image: 'https://image.freepik.com/vetores-gratis/eletricista-trabalhando-no-poste-de-energia-eletrica_107173-17176.jpg',
-        color: '#FFD700',
-        title: 'Eletricista',
-        status: '',
-        start_date: new Date(),
-        end_date: new Date(),
-      },
-      {
-        id: '2',
-        name: 'Matheus Fernando',
-        image: 'https://image.freepik.com/vetores-gratis/pintor-com-escova-de-rolo-e-pintura-balde-icone-dos-desenhos-animados-ilustracao-vetorial-conceito-de-icone-de-profissao-de-pessoas-isolado-vetor-premium-estilo-flat-cartoon_138676-1882.jpg',
-        color: '#00BFFF',
-        title: 'Pintor',
-        status: '',
-        start_date: new Date(),
-        end_date: new Date(),
-      },
-      {
-        id: '3',
-        name: 'Vinicius',
-        image: 'https://image.freepik.com/vetores-gratis/mascote-de-canalizador-personagem-de-encanador-desenho-animado-de-trabalhadores_7450-376.jpg',
-        color: '#FF0000',
-        title: 'Encanador',
-        status: '',
-        start_date: new Date(),
-        end_date: new Date(),
-      },
-    ])
+    setService(mockService.getServicePayment)
   }
   if(service.length) {
     return (
-      <FlatListService props={{service,  textButton: 'Ver andamento', nextPage: ''}}/>
+      <ListUnpaidService props={{service}}/>
+    );
+  }
+  return (
+    <ReturnImageNotService text="Nenhum Serviço para Pagar"/>
+  )
+}
+ 
+function ServicesInProgress() {
+  const [service, setService] = useState<DetailService[]>([]);
+  useEffect(() => {
+      getService();
+  }, []);
+
+  function getService() {
+    setService(mockService.getServiceInProgress)
+  }
+  if(service.length) {
+    return (
+      <ListServiceInProgress props={{service}}/>
     );
   }
   return (
@@ -57,22 +47,25 @@ function ServicesInProgress() {
   )
 }
 
-function FinishedServices() {
-  const [service, setService] = useState<IService[]>([]);
+function ServicesFinished() {
+  const [service, setService] = useState<DetailService[]>([]);
   useEffect(() => {
       getService();
   }, []);
 
-  function getService() {}
+  function getService() {
+    setService(mockService.getServiceServicesFinished())
+  }
   if(service.length) {
     return (
-      <FlatListService props={{service, textButton: 'Ver serviço', nextPage: ''}}/>
+      <ListServicesFinished props={{service}}/>
     );
   }
   return (
     <ReturnImageNotService text="Nenhum Serviço Finalizado"/>
   )
 }
+
 
 
 
@@ -94,9 +87,9 @@ const Service = () =>  {
         }}
         style={{marginTop:24}}
       >
-        <Tab.Screen name="Pagar Serviços" component={FinishedServices} />
+        <Tab.Screen name="Pagar Serviços" component={InitServices} />
         <Tab.Screen name="Serviços em andamento" component={ServicesInProgress}/>
-        <Tab.Screen name="Serviços finalizados" component={FinishedServices} />
+        <Tab.Screen name="Serviços finalizados" component={ServicesFinished} />
       </Tab.Navigator>
       <Footer props={'#A2C43A'}/>
     </>

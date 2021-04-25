@@ -24,6 +24,7 @@ export default StyleSheet.create({
     },
     text: {
         fontSize: 18,
+        marginTop: 10,
         color: '#41414d',
         fontWeight: 'bold',
     },
@@ -37,6 +38,12 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginTop: 15,
+    },
+    tasksButton2: {
+        borderRadius: 8,
+        alignItems: 'center',
+        marginTop: 20,
+        borderWidth: 5,
     },
     buttonText: {
         fontSize: 18,
