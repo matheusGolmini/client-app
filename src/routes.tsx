@@ -7,7 +7,6 @@ import Register from './pages/Register';
 import ServiceProvider from './pages/ServiceProvider';
 import PerfilServiceProvider from './pages/PerfilServiceProvider';
 import Service from './pages/Services';
-import Footer from './components/footer';
 
 const AppStack = createStackNavigator();
 
