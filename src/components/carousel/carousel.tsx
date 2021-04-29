@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, Dimensions, FlatList, Animated } from 'react-native'
+import React from 'react';
+import { View, StyleSheet, Dimensions, FlatList, Animated } from 'react-native';
+import { IServicesImages } from '../../interfaces/servicesImges';
 import CarouselItem from './carouselItem';
 
 
 const { width } = Dimensions.get('window');
 
 
-const Carousel = ({ data }: any) => {
+const Carousel = (data: {services: IServicesImages[] }) => {
     const scrollX = new Animated.Value(0)
     let position = Animated.divide(scrollX, width)
 
-    if (data && data.length) {
+    if (data && data.services.length) {
         return (
             <View>
-                <FlatList data={data}
+                <FlatList data={data.services}
                 ref = {(flatList) => {flatList = flatList}}
                     keyExtractor={(item, index) => 'key' + index}
                     horizontal
@@ -33,7 +34,7 @@ const Carousel = ({ data }: any) => {
                 />
 
                 <View style={styles.dotView}>
-                    {data.map((_: any, i: any) => {
+                    {data.services.map((_: IServicesImages, i: number) => {
                         let opacity = position.interpolate({
                             inputRange: [i - 1, i, i + 1],
                             outputRange: [0.3, 1, 0.3],
@@ -46,7 +47,6 @@ const Carousel = ({ data }: any) => {
                             />
                         )
                     })}
-
                 </View>
             </View>
         )

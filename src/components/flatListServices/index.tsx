@@ -4,12 +4,12 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from './styles'; 
 import { useNavigation } from '@react-navigation/core';
 import { FlatList } from 'react-native-gesture-handler';
-import { DetailService } from '../../interfaces';
+import { IDetailService } from '../../interfaces';
 import Rating from '../../components/Rating'
 
 interface PropsComponent {
     props: {
-        service: DetailService[]
+        service: IDetailService[]
     }
 }
 
@@ -19,7 +19,7 @@ export function ListUnpaidService(propsComponent: PropsComponent) {
         <View style={styles.container}>
         <FlatList 
             data={propsComponent.props.service}
-            keyExtractor={(service: DetailService) => String(service.id)}
+            keyExtractor={(service: IDetailService) => String(service.id)}
             showsVerticalScrollIndicator={false}    
             renderItem={({item: service})=> (
                 <View style={ { ...styles.task, borderColor: service.color }}>
@@ -61,7 +61,7 @@ export function ListServiceInProgress(propsComponent: PropsComponent) {
         <View style={styles.container}>
             <FlatList 
                 data={propsComponent.props.service}
-                keyExtractor={(service: DetailService) => String(service.id)}
+                keyExtractor={(service: IDetailService) => String(service.id)}
                 showsVerticalScrollIndicator={false}    
                 renderItem={({item: service})=> (
                     <View style={ { ...styles.task, borderColor: service.color }}>
@@ -99,7 +99,7 @@ export function ListServicesFinished(propsComponent: PropsComponent) {
         <View style={styles.container}>
             <FlatList 
                 data={propsComponent.props.service}
-                keyExtractor={(service: DetailService) => String(service.id)}
+                keyExtractor={(service: IDetailService) => String(service.id)}
                 showsVerticalScrollIndicator={false}    
                 renderItem={({item: service})=> (
                     <View style={ { ...styles.task, borderColor: service.color }}>

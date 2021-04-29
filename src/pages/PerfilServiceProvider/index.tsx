@@ -1,47 +1,13 @@
 import React from 'react'
 import { useRoute } from '@react-navigation/core';
 import Footer from '../../components/footer';
-import { PropUseRoute } from '../../interfaces';
+import { IPropUseRoute } from '../../interfaces';
 import Carousel from '../../components/carousel/carousel';
 import { View, Text, StyleSheet, Image } from "react-native"
-
-export const dummyData = [
-  {
-    title: 'Anise Aroma Art Bazar', 
-    url: 'https://images.pexels.com/photos/3396670/pexels-photo-3396670.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    id: 1
-
-  },
-  {
-    title: 'Food inside a Bowl', 
-    url: 'https://images.pexels.com/photos/6368/art-wall-brush-painting.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    id: 2
-  },
-  {
-    title: 'Vegatable Salad', 
-    url: 'https://images.pexels.com/photos/1037762/pexels-photo-1037762.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    id: 3
-  },
-  {
-    title: 'Vegatable Salad', 
-    url: 'https://images.pexels.com/photos/5767932/pexels-photo-5767932.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    id: 3
-  },
-  {
-    title: 'Vegatable Salad', 
-    url: 'https://images.pexels.com/photos/5716298/pexels-photo-5716298.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    id: 3
-  }
-]
+import { servicesImages } from '../../mocks/mock-images-jobs';
 
 const PerfilServiceProvider = () => {
-    const route = useRoute<PropUseRoute<{footerColor: string}>>();
-    console.log()
+    const route = useRoute<IPropUseRoute<{footerColor: string}>>();
     return (
         <>
             <View style={styles.container}>
@@ -50,7 +16,7 @@ const PerfilServiceProvider = () => {
               <Text> Perfil do Matheus </Text>
               <Text> Pintor </Text>
               <Text> Trabalhos </Text>
-              <Carousel data = {dummyData}/>
+              <Carousel services = {servicesImages}/>
               
             </View>
             <Footer props={route.params.footerColor}/>
