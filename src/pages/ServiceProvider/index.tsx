@@ -2,11 +2,11 @@ import { useRoute } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
 import FlatListServiceProvider from '../../components/flatListServiceProvider';
 import Footer from '../../components/footer';
-import { PropUseRoute, ServiceProvider } from '../../interfaces';
+import { IPropUseRoute, IServiceProvider } from '../../interfaces';
 
 const PageServiceProvider = () => {
-    const route = useRoute<PropUseRoute<{footerColor: string}>>();
-    const [serviceProvider, setServiceProvider] = useState<ServiceProvider[]>([]);
+    const route = useRoute<IPropUseRoute<{footerColor: string}>>();
+    const [serviceProvider, setServiceProvider] = useState<IServiceProvider[]>([]);
     useEffect(() => {
         getServiceProvider();
     }, []);

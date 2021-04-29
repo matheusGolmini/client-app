@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Footer from '../../components/footer';
 import FlatListSkills from '../../components/flatListSkills';
-import { Skills } from '../../interfaces';
+import { ISkills } from '../../interfaces';
 
 const Home = () => {
-    const [skills, setSkills] = useState<Skills[]>([]);
+    const [skills, setSkills] = useState<ISkills[]>([]);
     useEffect(() => {
         getSKills();
     }, []);

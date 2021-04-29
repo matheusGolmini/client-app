@@ -1,4 +1,4 @@
-export interface ServiceProvider {
+export interface IServiceProvider {
     id: string;
     name: string;
     time_experience: number;

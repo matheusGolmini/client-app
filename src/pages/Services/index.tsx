@@ -4,13 +4,13 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Footer from '../../components/footer';
 import {ListServiceInProgress, ListUnpaidService, ListServicesFinished} from '../../components/flatListServices';
 import ReturnImageNotService from '../../components/notService';
-import { DetailService } from '../../interfaces/service';
+import { IDetailService } from '../../interfaces/service';
 
 import mockService from '../../mocks/mock-detail-service';
 
 
 function InitServices() {
-  const [service, setService] = useState<DetailService[]>([]);
+  const [service, setService] = useState<IDetailService[]>([]);
   useEffect(() => {
       getService();
   }, []);
@@ -29,7 +29,7 @@ function InitServices() {
 }
  
 function ServicesInProgress() {
-  const [service, setService] = useState<DetailService[]>([]);
+  const [service, setService] = useState<IDetailService[]>([]);
   useEffect(() => {
       getService();
   }, []);
@@ -48,7 +48,7 @@ function ServicesInProgress() {
 }
 
 function ServicesFinished() {
-  const [service, setService] = useState<DetailService[]>([]);
+  const [service, setService] = useState<IDetailService[]>([]);
   useEffect(() => {
       getService();
   }, []);

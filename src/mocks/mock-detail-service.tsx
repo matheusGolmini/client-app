@@ -1,7 +1,7 @@
-import { DetailService } from '../interfaces/service'
+import { IDetailService } from '../interfaces/service'
 
 
-const mockServicePayment: DetailService[] = [
+const mockServicePayment: IDetailService[] = [
     {
         id: '1',
         combinedContract: 'Pintar uma parede de x tamanho.',
@@ -30,7 +30,7 @@ const mockServicePayment: DetailService[] = [
     }
 ];
 
-const mockServiceInProgress: DetailService[] = [
+const mockServiceInProgress: IDetailService[] = [
     {
         id: '1',
         combinedContract: 'Pintar a parede do quarto de rosa.',
@@ -48,7 +48,7 @@ const mockServiceInProgress: DetailService[] = [
     }
 ];
 
-const mockServiceServicesFinished: DetailService[] = [
+const mockServiceServicesFinished: IDetailService[] = [
     {
         id: '1',
         combinedContract: 'Pintar a parede do quarto de rosa.',
@@ -68,15 +68,15 @@ const mockServiceServicesFinished: DetailService[] = [
 
 class MockService {
     
-    getServicePayment(): DetailService[] {
+    getServicePayment(): IDetailService[] {
        return mockServicePayment;
     }
 
-    getServiceInProgress(): DetailService[] {
+    getServiceInProgress(): IDetailService[] {
         return mockServiceInProgress;
     }
 
-    getServiceServicesFinished(): DetailService[]{
+    getServiceServicesFinished(): IDetailService[]{
         return mockServiceServicesFinished
     }
 }

@@ -1,4 +1,4 @@
-export interface DetailService {
+export interface IDetailService {
     id: string
     service: string;
     nameProvider: string;
