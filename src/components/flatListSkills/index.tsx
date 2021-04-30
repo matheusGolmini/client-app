@@ -5,9 +5,9 @@ import { Feather } from '@expo/vector-icons';
 import styles from './styles'; 
 import { useNavigation } from '@react-navigation/core';
 import { FlatList } from 'react-native-gesture-handler';
-import { Skills } from '../../interfaces/skills';
+import { ISkills } from '../../interfaces/skills';
 
-export default function FlatListSkills(skills: { props: Skills[]}) {
+export default function FlatListSkills(skills: { props: ISkills[]}) {
     const navigation = useNavigation();
 
 
@@ -20,7 +20,7 @@ export default function FlatListSkills(skills: { props: Skills[]}) {
             <FlatList 
                 data={skills.props}
                 style={styles.taskList}
-                keyExtractor={(skill: Skills) => String(skill.id)}
+                keyExtractor={(skill: ISkills) => String(skill.id)}
                 showsVerticalScrollIndicator={false}    
                 renderItem={({item: skill})=> (
                 <View style={ { ...styles.task, borderColor: skill.color }}>

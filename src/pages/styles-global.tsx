@@ -15,18 +15,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         marginLeft: 15
     },
-
-    // input: {
-    //     marginTop: 10,
-    //     padding: 10,
-    //     width: 300,
-    //     height: 40,
-    //     backgroundColor: '#fff',
-    //     borderRadius: 15,
-    //     fontSize: 16,
-    //     fontWeight: 'bold',
-    // },
-
+    
     button: {
         backgroundColor: '#4169E1',
         marginTop: 10,

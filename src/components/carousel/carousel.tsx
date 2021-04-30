@@ -6,15 +6,21 @@ import CarouselItem from './carouselItem';
 
 const { width } = Dimensions.get('window');
 
+interface Carousel {
+    services: IServicesImages[];
+    color: string
+}
 
-const Carousel = (data: {services: IServicesImages[] }) => {
+const Carousel = (data: {values: Carousel }) => {
     const scrollX = new Animated.Value(0)
     let position = Animated.divide(scrollX, width)
 
-    if (data && data.services.length) {
+    const {services, color} = data.values;
+
+    if (data && services.length) {
         return (
             <View>
-                <FlatList data={data.services}
+                <FlatList data={services}
                 ref = {(flatList) => {flatList = flatList}}
                     keyExtractor={(item, index) => 'key' + index}
                     horizontal
@@ -25,7 +31,7 @@ const Carousel = (data: {services: IServicesImages[] }) => {
                     decelerationRate={"fast"}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
-                        return <CarouselItem item={item} />
+                        return <CarouselItem item={{service: item, color}} />
                     }}
                     onScroll={Animated.event(
                         [{ nativeEvent: { contentOffset: { x: scrollX } } }],
@@ -34,7 +40,7 @@ const Carousel = (data: {services: IServicesImages[] }) => {
                 />
 
                 <View style={styles.dotView}>
-                    {data.services.map((_: IServicesImages, i: number) => {
+                    {services.map((_: IServicesImages, i: number) => {
                         let opacity = position.interpolate({
                             inputRange: [i - 1, i, i + 1],
                             outputRange: [0.3, 1, 0.3],

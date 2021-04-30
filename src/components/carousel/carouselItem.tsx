@@ -4,11 +4,16 @@ import { IServicesImages } from '../../interfaces/servicesImges'
 
 const { width, height } = Dimensions.get('window')
 
+interface CarouselItem {
+    service: IServicesImages;
+    color: string;
+}
 
-const CarouselItem = (data: {item: IServicesImages }) => {
+const CarouselItem = (data: {item: CarouselItem }) => {
+    const  { service, color } = data.item
     return (
         <View style={styles.cardView}>
-            <Image style={styles.image} source={{ uri: data.item.url }} />
+            <Image style={{...styles.image, borderColor: color}} source={{ uri: service.url }} />
         </View>
     )
 }
@@ -31,7 +36,6 @@ const styles = StyleSheet.create({
         width: width - 20,
         height: height / 3,
         borderRadius: 10,
-        borderColor: '#00BFFF',
         borderWidth: 7
     }
 })
