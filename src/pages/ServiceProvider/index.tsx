@@ -1,5 +1,6 @@
 import { useRoute } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
+import { StatusBar } from 'react-native';
 import FlatListServiceProvider from '../../components/flatListServiceProvider';
 import Footer from '../../components/footer';
 import { IPropUseRoute, IServiceProvider } from '../../interfaces';
@@ -47,6 +48,7 @@ const PageServiceProvider = () => {
     
     return (
         <>
+            <StatusBar barStyle="dark-content" backgroundColor={route.params.footerColor} translucent/>
             <FlatListServiceProvider props={{serviceProvider, color: route.params.footerColor}}/>
             <Footer props={route.params.footerColor}/>
         </>

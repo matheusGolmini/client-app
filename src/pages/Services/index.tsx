@@ -7,6 +7,7 @@ import ReturnImageNotService from '../../components/notService';
 import { IDetailService } from '../../interfaces/service';
 
 import mockService from '../../mocks/mock-detail-service';
+import { StatusBar } from 'react-native';
 
 
 function InitServices() {
@@ -74,6 +75,7 @@ const Tab = createMaterialTopTabNavigator();
 const Service = () =>  {
   return (
     <>
+      <StatusBar barStyle="dark-content" backgroundColor="#A2C43A" translucent/>
       <Tab.Navigator
         tabBarOptions={{
           activeTintColor: '#A2C43A',
