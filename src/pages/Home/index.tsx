@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../../components/footer';
 import FlatListSkills from '../../components/flatListSkills';
 import { ISkills } from '../../interfaces';
+import { StatusBar } from 'react-native';
 
 const Home = () => {
     const [skills, setSkills] = useState<ISkills[]>([]);
@@ -45,6 +46,7 @@ const Home = () => {
     if(!!skills.length){
         return (
             <>
+                <StatusBar barStyle="dark-content" backgroundColor='#778899' translucent/>
                 <FlatListSkills props={skills}/>
                 <Footer props={null}/>
             </>

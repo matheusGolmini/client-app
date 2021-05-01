@@ -29,7 +29,7 @@ const PerfilServiceProvider = () => {
                   <Text style={{...styles.text, color: params.footerColor}}> Pintor </Text>
                   <View style={styles.styleImageButton}>
                     <Image 
-                      style={{...styles.logo, borderColor: params.footerColor   }} 
+                      style={{...styles.logo, borderColor: params.footerColor}} 
                       source={{uri: 'https://image.freepik.com/vetores-gratis/pintor-com-escova-de-rolo-e-pintura-balde-icone-dos-desenhos-animados-ilustracao-vetorial-conceito-de-icone-de-profissao-de-pessoas-isolado-vetor-premium-estilo-flat-cartoon_138676-1882.jpg'}}
                     />
                     <TouchableOpacity 
@@ -40,7 +40,7 @@ const PerfilServiceProvider = () => {
                     </TouchableOpacity>
                     
                   </View>
-                  
+                  <Text style={{...styles.text, color: params.footerColor}}>Experiência de 5 anos </Text>
                   <Rating value={false}/>
                   <Text style={{...styles.text, color: params.footerColor, alignItems: 'center', justifyContent: 'center'}}> Trabalhos </Text>
                 </View>

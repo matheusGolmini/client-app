@@ -6,7 +6,7 @@ import styles from './styles';
 import { useNavigation } from '@react-navigation/core';
 
 export default function Footer(color: { props: string | null}) {
-    const [backgroundColor, setBackgroundColor] = useState<string>('#696969');
+    const [backgroundColor, setBackgroundColor] = useState<string>('#778899');
     const navigation = useNavigation();
 
     useEffect(()=> {

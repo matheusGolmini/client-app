@@ -3,7 +3,7 @@ import { View, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Reating(props: {value: boolean}) {
-    const [ maxReating, setMaxReating ] = useState<number[]>([1,2,3,4]);
+    const [ maxReating, setMaxReating ] = useState<number[]>([1,2,3,4,5]);
     const [ defaultRating, setDefaultRating ] = useState<number>(0);
 
     if(!props.value) {
@@ -32,7 +32,10 @@ export default function Reating(props: {value: boolean}) {
                             key={key}
                             onPress={() => controlRating(item)}
                         >
-                            <Image source={
+                            <Image
+                                style={styles.image}
+                                key={key} 
+                                source={
                                 item <= defaultRating
                                     ? require('../../assets/rating/star_filled.png')
                                     : require('../../assets/rating/star_corner.png')
@@ -67,5 +70,9 @@ const styles =  StyleSheet.create({
         width: 10,
         height: 10,
         resizeMode: 'cover'
+    },
+    image: {
+        width: 50, 
+        height: 50
     }
 });

@@ -8,7 +8,8 @@ export default StyleSheet.create({
         marginLeft: 50,
     },
     container: {
-        margin: 55
+        marginTop: 20,
+        margin: 50
     },
     task: {
         padding: 24,
