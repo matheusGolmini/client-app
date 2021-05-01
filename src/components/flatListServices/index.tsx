@@ -111,7 +111,7 @@ export function ListServicesFinished(propsComponent: PropsComponent) {
                         
                         <Text style={{...styles.text, color: service.color}}>Valor pago: {service.value} reais</Text>
 
-                        <Rating />
+                        <Rating value={true}/>
                         
                         <TouchableOpacity 
                             style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 

@@ -1,8 +1,8 @@
-import React from 'react'
-import { View, StyleSheet, Text, Image, Dimensions } from 'react-native'
-import { IServicesImages } from '../../interfaces/servicesImges'
+import React from 'react';
+import { View, StyleSheet, Image, Dimensions } from 'react-native';
+import { IServicesImages } from '../../interfaces/servicesImges';
 
-const { width, height } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window');
 
 interface CarouselItem {
     service: IServicesImages;

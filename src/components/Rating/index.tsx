@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Reating = () => {
-    const [ maxReating, setMaxReating ] = useState<number[]>([1,2,3, 4]);
+export default function Reating(props: {value: boolean}) {
+    const [ maxReating, setMaxReating ] = useState<number[]>([1,2,3,4]);
     const [ defaultRating, setDefaultRating ] = useState<number>(0);
 
+    if(!props.value) {
+        useEffect(() => {
+            //buscar o nivel do profissional;
+            setDefaultRating(2);
+        }, []);
+    }
+    
     function controlRating(num: number) {
         if(num === defaultRating) {
             setDefaultRating(defaultRating - 1)
@@ -19,9 +26,10 @@ const Reating = () => {
             {
                 maxReating.map((item, key) => {
                     return(
-                        <TouchableOpacity
+                        props.value 
+                        ? <TouchableOpacity
                             activeOpacity={0.7}
-                            key={item}
+                            key={key}
                             onPress={() => controlRating(item)}
                         >
                             <Image source={
@@ -31,6 +39,14 @@ const Reating = () => {
                             }/>
 
                         </TouchableOpacity>
+
+                        : <Image 
+                            key={key}
+                            source={
+                            item <= defaultRating
+                                ? require('../../assets/rating/star_filled.png')
+                                : require('../../assets/rating/star_corner.png')
+                        }/>
                     )
                 })
             }
@@ -43,7 +59,7 @@ const styles =  StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         marginTop: 10,
-        padding: 24,
+        marginVertical: 10,
     },
     starImgStyle: {
         borderColor: 'red',
@@ -53,5 +69,3 @@ const styles =  StyleSheet.create({
         resizeMode: 'cover'
     }
 });
-
-export default Reating;
