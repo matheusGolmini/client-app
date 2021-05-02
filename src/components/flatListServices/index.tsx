@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Linking, Modal} from 'react-native';
 
 import styles from './styles'; 
-import { useNavigation } from '@react-navigation/core';
 import { FlatList } from 'react-native-gesture-handler';
 import { IDetailService } from '../../interfaces';
-import Rating from '../../components/Rating'
+import Rating from '../../components/Rating';
+
 
 interface PropsComponent {
     props: {
@@ -13,8 +13,45 @@ interface PropsComponent {
     }
 }
 
+function contractService(text: string) {
+    Linking.openURL(
+      `whatsapp://send?text=${text}&phone=5541984875054`
+    )
+};
+
+
+function Paypal() {
+    // const [showModal, setShowModal] = useState<boolean>(false);
+    // function test (data: any) {
+
+    // }
+    // return (
+    //     <>
+    //         <Modal
+    //             visible={showModal}
+    //             onRequestClose={()=> setShowModal(false)}
+    //             onResponderEnd={data => test(data)}
+    //         >
+    //             <WebView
+    //                 source={{uri: 'http://localhost:3000/'}}
+    //             />
+    //         </Modal>
+
+    //         <TouchableOpacity
+    //             style={{width: 300, height: 100}}
+    //             onPress={() => setShowModal(true)}
+    //         >
+    //             <Text>Pagar com Paypal</Text>
+    //         </TouchableOpacity>
+    //     </>
+    // )
+    // Linking.openURL(
+    //     `https://58b63c47854f.ngrok.io`
+    //  )
+};
+
 export function ListUnpaidService(propsComponent: PropsComponent) {
-    const navigation = useNavigation();
+    const text= `Olá%20é%20o%20Matheus,%20estou%20com%20duvida%20sobre%20esse%20serviço!%20id%20serviço`;
     return (
         <View style={styles.container}>
         <FlatList 
@@ -31,14 +68,14 @@ export function ListUnpaidService(propsComponent: PropsComponent) {
 
                     <TouchableOpacity 
                         style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
-                        onPress={() => {}}
+                        onPress={Paypal}
                     >
                         <Text style={{...styles.buttonText, color:  'white'}}> Pague o Serviço</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity 
                         style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
-                        onPress={() => {}}
+                        onPress={() => contractService(text)}
                     >
                         <Text style={{...styles.buttonText, color:  'white'}}> Falar com {service.nameProvider}</Text>
                     </TouchableOpacity>
@@ -57,6 +94,7 @@ export function ListUnpaidService(propsComponent: PropsComponent) {
 }
 
 export function ListServiceInProgress(propsComponent: PropsComponent) {
+    const text= `Olá%20é%20o%20Matheus,%20gostaria%20de%20tirar%20umas%20duvidas%20com%20você.`;
     return (
         <View style={styles.container}>
             <FlatList 
@@ -76,7 +114,7 @@ export function ListServiceInProgress(propsComponent: PropsComponent) {
 
                         <TouchableOpacity 
                             style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
-                            onPress={() => {}}
+                            onPress={() => contractService(text)}
                         >
                             <Text style={{...styles.buttonText, color:  'white'}}> Falar com {service.nameProvider}</Text>
                         </TouchableOpacity>

@@ -46,16 +46,16 @@ const Home = () => {
     if(!!skills.length){
         return (
             <>
-                <StatusBar barStyle="dark-content" backgroundColor='#778899' translucent/>
+                <StatusBar barStyle="dark-content" backgroundColor='#A2C43A' translucent/>
                 <FlatListSkills props={skills}/>
-                <Footer props={null}/>
+                <Footer props={'#A2C43A'}/>
             </>
         )
 
     }else {
         return (
             <>
-                <Footer props={null}/>
+                <Footer props={'#A2C43A'}/>
             </>
         )
     }

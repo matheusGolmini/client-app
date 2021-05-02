@@ -3,7 +3,7 @@ import { useRoute } from '@react-navigation/core';
 import Footer from '../../components/footer';
 import { IPropUseRoute } from '../../interfaces';
 import Carousel from '../../components/carousel/carousel';
-import { View, Text, Image, TouchableOpacity, ScrollView,StatusBar } from "react-native"
+import { View, Text, Image, TouchableOpacity, ScrollView, StatusBar, Linking } from "react-native"
 import { servicesImages } from '../../mocks/mock-images-jobs';
 import { IServicesImages } from '../../interfaces/servicesImges';
 import styles from './styles';
@@ -12,10 +12,16 @@ import Rating from '../../components/Rating';
 const PerfilServiceProvider = () => {
     const { params } = useRoute<IPropUseRoute<{footerColor: string}>>();
     const [ services, setServices] = useState<IServicesImages[]>([]);
-
+    
     useEffect(()=> {
       setServices(servicesImages)
     }, []);
+
+    function contractService() {
+      Linking.openURL(
+        `whatsapp://send?text=Olá%20sou%20o%20Matheus,%20cliente%20do%20Reparo%20Rápido.%20Vi%20seu%20perfil%20Henrique,%20gostaria%20de%20contratar%20seu%20serviço.&phone=5541984875054`
+      )
+    }
 
     return (
         <>
@@ -34,7 +40,7 @@ const PerfilServiceProvider = () => {
                     />
                     <TouchableOpacity 
                       style={{...styles.button, backgroundColor: params.footerColor }}
-                      onPress={() => {}}
+                      onPress={contractService}
                     >
                       <Text style={styles.buttonText}>Contratar serviço</Text>
                     </TouchableOpacity>
