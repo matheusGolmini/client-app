@@ -27,6 +27,7 @@ const PerfilServiceProvider = () => {
         <>
           <StatusBar barStyle="dark-content" backgroundColor={params.footerColor} translucent/>
           <ScrollView 
+            style={{backgroundColor: '#fff'}}
             showsVerticalScrollIndicator={false}
           >   
               <View style={styles.container}>

@@ -13,9 +13,8 @@ const styles =  StyleSheet.create({
 
   container: {
     marginTop: 10,
-    marginVertical: 55,
+    marginVertical: (height + 70) - height,
     height: height,
-    backgroundColor: '#fff',
   },
 
   text: {
