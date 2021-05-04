@@ -68,33 +68,43 @@ const Register = () => {
                     }
                 </TouchableOpacity>
                 <Text style={ stylesGlobal.headerText }>Reparo Rápido</Text>
-                <TextInput 
-                    style={stylesGlobal.input} 
-                    onChangeText={(val) => setName(val)}
-                    placeholder='Nome' 
-                    placeholderTextColor='#FFF'
-                />
-                <TextInput 
-                    keyboardType= 'email-address'
-                    style={stylesGlobal.input} 
-                    onChangeText={(val) => setEmail(val)}
-                    placeholder='E-mail' 
-                    placeholderTextColor='#FFF'
-                />
-                <TextInput 
-                    keyboardType= 'email-address'
-                    style={stylesGlobal.input} 
-                    onChangeText={(val) => setConEmail(val)}
-                    placeholder='Confirmação de e-mail'
-                    placeholderTextColor='#FFF'
-                />
+                <View style={stylesGlobal.input}>
+                    <TextInput 
+                        style={stylesGlobal.inputText} 
+                        onChangeText={(val) => setName(val)}
+                        placeholder='Nome' 
+                        placeholderTextColor='#4169E1'
+                    />
+                </View>
+               
+                <View style={stylesGlobal.input}>
+                    <TextInput 
+                        keyboardType= 'email-address'
+                        style={stylesGlobal.inputText} 
+                        onChangeText={(val) => setEmail(val)}
+                        placeholder='E-mail' 
+                        placeholderTextColor='#4169E1'
+                    />
+                </View>
+
+                <View style={stylesGlobal.input}>
+                    <TextInput 
+                        keyboardType= 'email-address'
+                        style={stylesGlobal.inputText} 
+                        onChangeText={(val) => setConEmail(val)}
+                        placeholder='Confirmação de e-mail'
+                        placeholderTextColor='#4169E1'
+                    /> 
+                </View>
+                
+                
             <View style={stylesGlobal.inputAreaPassword}>
                     <TextInput 
                         style={stylesGlobal.inputPass} 
                         secureTextEntry={hidePass} 
                         onChangeText={(val) => setPassword(val)}
                         placeholder='Senha'
-                        placeholderTextColor='#FFF'
+                        placeholderTextColor='#4169E1'
                     />
                     <TouchableOpacity style={stylesGlobal.iconEye} onPress={() => setHidePass(!hidePass)}>
                         {
@@ -112,7 +122,7 @@ const Register = () => {
                         secureTextEntry={hideConPass} 
                         onChangeText={(val) => setConPassword(val)}
                         placeholder='Confirmação de senha'
-                        placeholderTextColor='#FFF'
+                        placeholderTextColor='#4169E1'
                     />
                     <TouchableOpacity style={stylesGlobal.iconEye} onPress={() => setHideConPass(!hideConPass)}>
                         {

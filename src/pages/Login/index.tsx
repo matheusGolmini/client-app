@@ -32,21 +32,23 @@ const Login = () => {
         <View style={stylesGlobal.container}>
             <Image style={stylesGlobal.logo} source={require('../../assets/logo.jpg')}/>
             <Text style={ stylesGlobal.headerText }>Reparo Rápido</Text>
-
-            <TextInput 
-                keyboardType= 'email-address'
-                style={stylesGlobal.input} 
-                onChangeText={(val) => setEmail(val)}
-                placeholder='Digite seu E-mail'
-                placeholderTextColor='#FFF'
-            />
+            <View style={stylesGlobal.input}>
+                <TextInput 
+                    keyboardType= 'email-address'
+                    style={stylesGlobal.inputText} 
+                    onChangeText={(val) => setEmail(val)}
+                    placeholder='Digite seu E-mail'
+                    placeholderTextColor='#4169E1'
+                />
+            </View>
+            
            <View style={stylesGlobal.inputAreaPassword}>
                 <TextInput 
                     style={stylesGlobal.inputPass} 
                     secureTextEntry={hidePass} 
                     onChangeText={(val) => setPassword(val)}
                     placeholder='Senha'
-                    placeholderTextColor='#FFF'
+                    placeholderTextColor='#4169E1'
                 />
                 <TouchableOpacity style={stylesGlobal.iconEye} onPress={() => setHidePass(!hidePass)}>
                     {
