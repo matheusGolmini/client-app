@@ -5,11 +5,11 @@ import { Feather } from '@expo/vector-icons';
 import styles from './styles'; 
 import { useNavigation } from '@react-navigation/core';
 import { FlatList } from 'react-native-gesture-handler';
-import { ServiceProvider } from '../../interfaces/serviceProvider';
+import { IServiceProvider } from '../../interfaces/serviceProvider';
 
 interface PropsComponent {
     props: {
-        serviceProvider: ServiceProvider[],
+        serviceProvider: IServiceProvider[],
         color: string 
     }
 }
@@ -19,7 +19,7 @@ export default function FlatListServiceProvider(propsComponent: PropsComponent) 
 
 
     function navigateToSkill(footerColor: string) {
-        navigation.navigate('PerfilServiceProvider', { footerColor });
+        navigation.navigate('ProfileServiceProvider', { footerColor });
     }
 
     return (
@@ -27,7 +27,7 @@ export default function FlatListServiceProvider(propsComponent: PropsComponent) 
             <FlatList 
                 data={propsComponent.props.serviceProvider}
                 style={styles.taskList}
-                keyExtractor={(serviceProvider: ServiceProvider) => String(serviceProvider.id)}
+                keyExtractor={(serviceProvider: IServiceProvider) => String(serviceProvider.id)}
                 showsVerticalScrollIndicator={false}    
                 renderItem={({item: serviceProvider})=> (
                 <View style={ { ...styles.task, borderColor: propsComponent.props.color }}>

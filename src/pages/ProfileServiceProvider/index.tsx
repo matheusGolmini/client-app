@@ -9,7 +9,7 @@ import { IServicesImages } from '../../interfaces/servicesImges';
 import styles from './styles';
 import Rating from '../../components/Rating';
 
-const PerfilServiceProvider = () => {
+const ProfileServiceProvider = () => {
     const { params } = useRoute<IPropUseRoute<{footerColor: string}>>();
     const [ services, setServices] = useState<IServicesImages[]>([]);
     
@@ -63,4 +63,4 @@ const PerfilServiceProvider = () => {
 
 
 
-export default PerfilServiceProvider;
+export default ProfileServiceProvider;
