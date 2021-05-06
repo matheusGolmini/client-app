@@ -15,25 +15,16 @@ export default function Footer(color: { props: string | null}) {
         }
     }, []);
 
-    function logout(){
-        navigation.navigate('Login');
-    }
-    function navigateToTasks(){
-        navigation.navigate('Service');
-    }
-    function navigateToProfile(){
-        navigation.navigate('Profile');
-    }
-    function navigateToHome(){
-        navigation.navigate('Home');
-    }
 
+    function goTo(screenName: string){
+        navigation.navigate(screenName);
+    }
     
     return (
         <View style={{...styles.footer, backgroundColor: backgroundColor}}>
            <TouchableOpacity 
                 style={styles.button}
-                onPress={navigateToHome}
+                onPress={() => goTo('Home')}
             >
                 <Feather name="home" size={25} color="white"/>
                 <Text style={styles.iconText}> Home </Text>
@@ -41,21 +32,21 @@ export default function Footer(color: { props: string | null}) {
             </TouchableOpacity>
             <TouchableOpacity 
                 style={styles.button}
-                onPress={navigateToProfile}
+                onPress={() => goTo('Profile')}
             >
                 <Feather name="user" size={25} color="white"/>
                 <Text style={styles.iconText}> Perfil </Text>
             </TouchableOpacity>
             <TouchableOpacity 
                 style={styles.button}
-                onPress={navigateToTasks}
+                onPress={() => goTo('Service')}
             >
                 <Feather name="book" size={25} color="white"/>
                 <Text style={styles.iconText}>Serviços</Text>
             </TouchableOpacity>
             <TouchableOpacity 
                 style={styles.button}
-                onPress={logout}
+                onPress={() => goTo('Login')}
             >
                 <Feather name="power" size={25} color="white"/>
                 <Text style={styles.iconText}> Sair </Text>
