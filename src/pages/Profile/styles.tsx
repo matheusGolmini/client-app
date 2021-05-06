@@ -4,26 +4,67 @@ const { width, height } = Dimensions.get('window');
 
 const styles =  StyleSheet.create({
   logo: {
-    width: 150,
-    height: 150,
+    width: 130,
+    height: 130,
     borderRadius: 100,
     borderWidth: 5,
     marginTop: 10,
   },
 
   container: {
-    marginTop: 30,
-    marginVertical: (height + 70) - height,
-    height: height,
-    alignItems: 'center'
+    flex: 1
+  },
+
+  userInfoSection: {
+    marginBottom: 25,
+    paddingHorizontal: 30
+  },
+
+  row: {
+    flexDirection: 'row',
+    fontWeight: 'bold',
+    marginTop: 10
+  },
+
+  infoBoxWrapper: {
+    borderBottomColor: '#4169E1',
+    borderBottomWidth: 3,
+    borderTopColor: '#4169E1',
+    borderTopWidth: 3,
+    flexDirection: 'row',
+    height: 100,
+  },
+  
+  infoBox: {
+    width: '50%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  menuWrapper: {
+    marginTop: 20,
+  },
+
+  menuItem: {
+    flexDirection: 'row',
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+  },
+
+  menuItemText: {
+    color: '#696969',
+    marginLeft: 20,
+    fontWeight: 'bold',
+    fontSize: 16,
+    lineHeight: 26,
   },
 
   text: {
-    marginTop: 10,
     alignContent: 'center',
     alignItems: 'center',
     fontSize: 25,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: '#696969'
   },
 
   styleImageButton: {
