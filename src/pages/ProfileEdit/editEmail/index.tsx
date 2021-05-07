@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import Footer from '../../components/footer';
-import { View, Text, Image, TouchableOpacity, ScrollView, ImageBackground, Modal} from "react-native"
-import * as ImagePicker from 'expo-image-picker';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { View, Text, Image, TouchableOpacity, Modal} from "react-native"
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { Feather } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/core';
 
-import styles from './styles';
-import stylesGlobal from '../styles-global'
+import styles from '../styles';
+import stylesGlobal from '../../styles-global'
 
 
-const ProfileEdit = () => {
-    const [image, setImage] = useState<string | null>(null);
+const ProfileEditEmail = () => {
     const [disableButton, setDisableButton] = useState<boolean>(true);
     const [opacityButton, setOpacityButton] = useState<number>(0.5);
-    const[name, setName] = useState<string>('');
-    const[phone, setPhone] = useState<string>('');
-    const [visible, setVisible ] = useState<boolean>(false);
+    const[email, setEmail] = useState<string>('');
+    const[confirmEmail, setConfirmEmail] = useState<string>('');
+    const [visibleModalOne, setVisibleModalOne ] = useState<boolean>(false);
+    const [visibleModalTwo, setVisibleModalTwo ] = useState<boolean>(false);
 
     useEffect(() => {
-        if(!!name || !!phone || !! image){
+        if(!!email && !!confirmEmail){
             setDisableButton(false)
             setOpacityButton(1)
         }else {
@@ -38,22 +35,17 @@ const ProfileEdit = () => {
 
     function alterData(){
         //enviar dados para serem alterados
-        console.log('dados alterado: ', image, name, phone);
-        setVisible(false)
+        console.log('alterado: ', email);
+        setVisibleModalOne(false)
         navigation.navigate('Home')
 
     }
 
-    const pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
-
-        if (!result.cancelled) {
-            setImage(result.uri);
+    function emailEqual(){
+        if(email.toLowerCase() === confirmEmail.toLowerCase()){
+            setVisibleModalOne(true);
+        }else {
+            setVisibleModalTwo(true);
         }
     }
 
@@ -82,44 +74,29 @@ const ProfileEdit = () => {
                     </TouchableOpacity>
                 
                     <View style={{alignItems: 'center', marginTop: 2}}> 
-                        <TouchableOpacity 
-                            onPress={ pickImage }
-                        >
-                            
-                            {image === null 
-                                ? <ImageBackground style={styles.logo} source={require('../../assets/avatar.jpg')}>
-                                    <View style={{
-                                        flex: 1,
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}>
-                                        <Icon name="camera"  size={35} color="#FFF" style={styles.camera}/>
-                                    </View>
-                                </ImageBackground>  
-                                : <Image  source={ {uri: image }} style={{...styles.logo,  borderColor: '#4169E1'}}/>
-                            }
-                        </TouchableOpacity>
+                        <Image style={styles.logo} source={require('../../../assets/avatar.jpg')} />
                         <Text style={styles.text}>Matheus</Text>
                     </View>
-                    <View style={{...styles.action, marginTop: 20}}>
-                        <FontAwesome  name='user-o' size={20}/>
+                    <View style={styles.action}>
+                        <FontAwesome  name='envelope-o' size={20}/>
                         <TextInput 
-                            placeholder='Nome'
+                            placeholder='E-mail'
                             placeholderTextColor='#666666'
+                            keyboardType='email-address'
                             autoCorrect={false}
-                            onChangeText={(val) => setName(val)}
+                            onChangeText={(val) => setEmail(val)}
                             style={{marginLeft: 20, fontSize: 18}}
                         />
 
                     </View>
                     <View style={styles.action}>
-                        <FontAwesome  name='phone' size={20}/>
+                        <FontAwesome  name='envelope-o' size={20}/>
                         <TextInput 
-                            placeholder='Telefone'
+                            placeholder='Confirmar E-mail'
                             placeholderTextColor='#666666'
-                            keyboardType='number-pad'
+                            keyboardType='email-address'
                             autoCorrect={false}
-                            onChangeText={(val) => setPhone(val)}
+                            onChangeText={(val) => setConfirmEmail(val)}
                             style={{marginLeft: 20, fontSize: 18}}
                         />
 
@@ -129,7 +106,7 @@ const ProfileEdit = () => {
                     <View style={{alignItems: 'center'}}>
                         <TouchableOpacity 
                             style={{...stylesGlobal.button, opacity: opacityButton}}
-                            onPress={() => setVisible(true)}
+                            onPress={emailEqual}
                             disabled={disableButton}
                         >
                             <Text style={stylesGlobal.buttonText}>Salvar</Text>
@@ -145,10 +122,10 @@ const ProfileEdit = () => {
             <Modal
                 animationType='slide'
                 transparent={true}
-                visible={visible}
+                visible={visibleModalOne}
             >
                 <View style={styles.modal}>
-                    <Text style={styles.title}>Quer realmente alterar seus dados?</Text>
+                    <Text style={styles.title}>Quer realmente alterar seu E-mail?</Text>
                     <View style={styles.buttonArea}>
                         <TouchableOpacity 
                             style={{...styles.buttonModal, marginHorizontal: 10}}
@@ -158,9 +135,28 @@ const ProfileEdit = () => {
                         </TouchableOpacity>
                         <TouchableOpacity 
                             style={styles.buttonModal}
-                            onPress={() => setVisible(false) }
+                            onPress={() => setVisibleModalOne(false) }
                         >
                             <Text style={stylesGlobal.buttonText}>Não</Text>
+                        </TouchableOpacity>
+                    </View>
+    
+                </View>
+            </Modal>
+
+            <Modal
+                animationType='slide'
+                transparent={true}
+                visible={visibleModalTwo}
+            >
+                <View style={styles.modal}>
+                    <Text style={styles.title}>Os E-mails não estão iguais!</Text>
+                    <View style={styles.buttonArea}>
+                        <TouchableOpacity 
+                            style={styles.buttonModal}
+                            onPress={() => setVisibleModalTwo(false) }
+                        >
+                            <Text style={stylesGlobal.buttonText}>Ajustar</Text>
                         </TouchableOpacity>
                     </View>
     
@@ -172,4 +168,4 @@ const ProfileEdit = () => {
 
 
 
-export default ProfileEdit;
+export default ProfileEditEmail;

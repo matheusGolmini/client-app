@@ -3,7 +3,6 @@ import Footer from '../../components/footer';
 import { StatusBar, Image, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import * as ImagePicker from 'expo-image-picker';
 import styles from './styles';
 import { IClient } from '../../interfaces/client';
 import { useNavigation } from '@react-navigation/core';
@@ -84,10 +83,20 @@ const Profile = () => {
         </View>
 
         <View style={styles.menuWrapper}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => goTo('ProfileEditEmail')}
+          >
             <View style={styles.menuItem}>
-              <Icon name='share-outline' size={30}style={{color: '#FF0000'}}/>
-              <Text style={{...styles.menuItemText}}> Compartilhar App </Text>
+              <Icon name='email' size={30}style={{color: '#FF0000'}}/>
+              <Text style={{...styles.menuItemText}}> Alterar E-mail </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => goTo('ProfileEditEmail')}
+          >
+            <View style={styles.menuItem}>
+              <Icon name='key' size={30}style={{color: '#FF0000'}}/>
+              <Text style={{...styles.menuItemText}}> Alterar Senha </Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity>

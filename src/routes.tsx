@@ -9,6 +9,7 @@ import ProfileServiceProvider from './pages/ProfileServiceProvider';
 import Service from './pages/Services';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
+import ProfileEditEmail from './pages/ProfileEdit/editEmail';
 
 const AppStack = createStackNavigator();
 
@@ -25,6 +26,7 @@ export default function Routes(){
                <AppStack.Screen name="Service" component={Service} />
                <AppStack.Screen name="Profile" component={Profile} />
                <AppStack.Screen name="ProfileEdit" component={ProfileEdit} />
+               <AppStack.Screen name="ProfileEditEmail" component={ProfileEditEmail} />
            </AppStack.Navigator>
        </NavigationContainer>
     )
