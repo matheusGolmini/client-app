@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Footer from '../../components/footer';
-import { View, Text, Image, TouchableOpacity, ScrollView, ImageBackground, Modal} from "react-native"
+import { View, Text, Image, TouchableOpacity, ImageBackground, Modal} from "react-native"
 import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
