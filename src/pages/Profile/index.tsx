@@ -92,7 +92,7 @@ const Profile = () => {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => goTo('ProfileEditEmail')}
+            onPress={() => goTo('ProfileEditPassword')}
           >
             <View style={styles.menuItem}>
               <Icon name='key' size={30}style={{color: '#FF0000'}}/>
