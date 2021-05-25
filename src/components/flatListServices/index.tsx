@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, Linking, Modal} from 'react-native';
 
 import styles from './styles'; 
 import { FlatList } from 'react-native-gesture-handler';
 import { IDetailService } from '../../interfaces';
 import Rating from '../../components/Rating';
+import CreateTicket from '../createTicket'
 
 
 interface PropsComponent {
@@ -52,6 +53,7 @@ function Paypal() {
 
 export function ListUnpaidService(propsComponent: PropsComponent) {
     const text= `Olá%20é%20o%20Matheus,%20estou%20com%20duvida%20sobre%20esse%20serviço!%20id%20serviço`;
+    const [controlPicker, setControlPicker] = useState<boolean>(false);
     return (
         <View style={styles.container}>
         <FlatList 
@@ -82,10 +84,15 @@ export function ListUnpaidService(propsComponent: PropsComponent) {
 
                     <TouchableOpacity 
                         style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
-                        onPress={() => {}}
+                        onPress={() => setControlPicker(!controlPicker)}
                     >
                         <Text style={{...styles.buttonText, color:  'white'}}> Ajuda</Text>
                     </TouchableOpacity>
+                    {
+                        controlPicker ? 
+                        <CreateTicket props={{service}}/>
+                        : <></>
+                    }
                 </View>
             )}
         />
