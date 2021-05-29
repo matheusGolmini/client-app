@@ -11,7 +11,6 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import ProfileEditEmail from './pages/ProfileEdit/editEmail';
 import ProfileEditPassword from './pages/ProfileEdit/editPassword';
-import CreateTicket from './pages/CreateTicket';
 
 const AppStack = createStackNavigator();
 
@@ -20,7 +19,7 @@ export default function Routes(){
     return(
        <NavigationContainer>
            <AppStack.Navigator screenOptions={{ headerShown: false }}>
-               <AppStack.Screen name='Login' component={CreateTicket} />
+               <AppStack.Screen name='Login' component={Login} />
                <AppStack.Screen name="Register" component={Register} />
                <AppStack.Screen name="Home" component={Home} />
                <AppStack.Screen name="ServiceProvider" component={ServiceProvider} />

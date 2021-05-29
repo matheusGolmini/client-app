@@ -84,13 +84,16 @@ export function ListUnpaidService(propsComponent: PropsComponent) {
 
                     <TouchableOpacity 
                         style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
-                        onPress={() => setControlPicker(!controlPicker)}
+                        onPress={() => {
+                            service.help_open = !service.help_open;
+                            setControlPicker(!controlPicker);
+                        }}
                     >
                         <Text style={{...styles.buttonText, color:  'white'}}> Ajuda</Text>
                     </TouchableOpacity>
                     {
-                        controlPicker ? 
-                        <CreateTicket props={{service}}/>
+                        service.help_open ? 
+                        <CreateTicket service={service}/>
                         : <></>
                     }
                 </View>
@@ -102,6 +105,7 @@ export function ListUnpaidService(propsComponent: PropsComponent) {
 
 export function ListServiceInProgress(propsComponent: PropsComponent) {
     const text= `Olá%20é%20o%20Matheus,%20gostaria%20de%20tirar%20umas%20duvidas%20com%20você.`;
+    const [controlPicker, setControlPicker] = useState<boolean>(false);
     return (
         <View style={styles.container}>
             <FlatList 
@@ -128,10 +132,18 @@ export function ListServiceInProgress(propsComponent: PropsComponent) {
 
                         <TouchableOpacity 
                             style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
-                            onPress={() => {}}
+                            onPress={() => {
+                                service.help_open = !service.help_open;
+                                setControlPicker(!controlPicker);
+                            }}
                         >
                             <Text style={{...styles.buttonText, color:  'white'}}> Ajuda</Text>
                         </TouchableOpacity>
+                        {
+                        service.help_open ? 
+                        <CreateTicket service={service}/>
+                        : <></>
+                    }
                     </View>
                 )}
             />
@@ -140,6 +152,7 @@ export function ListServiceInProgress(propsComponent: PropsComponent) {
 }
 
 export function ListServicesFinished(propsComponent: PropsComponent) {
+    const [controlPicker, setControlPicker] = useState<boolean>(false);
     return (
         <View style={styles.container}>
             <FlatList 
@@ -160,11 +173,18 @@ export function ListServicesFinished(propsComponent: PropsComponent) {
                         
                         <TouchableOpacity 
                             style={{...styles.tasksButton2, backgroundColor: service.color, borderColor: service.color}} 
-                            onPress={() => {}}
+                            onPress={() => {
+                                service.help_open = !service.help_open;
+                                setControlPicker(!controlPicker);
+                            }}
                         >
                             <Text style={{...styles.buttonText, color:  'white'}}> Ajuda</Text>
                         </TouchableOpacity>
-
+                        {
+                        service.help_open ? 
+                        <CreateTicket service={service}/>
+                        : <></>
+                    }
                         
                     </View>
                 )}

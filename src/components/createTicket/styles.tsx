@@ -18,15 +18,18 @@ export default StyleSheet.create({
         marginBottom: 40
     },
     subheader: {
+        marginTop: 15,
         fontSize: 18,
         color: '#41414d',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
     textInput: {
         marginTop:10,
         borderWidth: 4,
         borderColor: '#D3D3D3',
-        padding:10
+        padding:10,
+        textAlignVertical: 'top'
     },
     picker: {
         height: 40,
@@ -37,6 +40,23 @@ export default StyleSheet.create({
         margin: 20
     },
     buttonText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    tasksButton: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 15,
+    },
+    tasksButton2: {
+        borderRadius: 8,
+        alignItems: 'center',
+        marginTop: 20,
+        borderWidth: 5,
+    },
+    buttonText2: {
         fontSize: 18,
         fontWeight: 'bold'
     }
