@@ -6,10 +6,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import styles from './styles';
 import { IClient } from '../../interfaces/client';
 import { useNavigation } from '@react-navigation/core';
+import CreateTicket from '../../components/createTicket';
 
 const Profile = () => {
   const [image, setImage] = useState<string | null>(null);
   const [client, setClient] = useState<IClient>();
+  const [controlPicker, setControlPicker] = useState<boolean>(false);
 
   const navigation = useNavigation();
 
@@ -27,6 +29,7 @@ const Profile = () => {
   function goTo(screenName: string){
     navigation.navigate(screenName);
   }
+  
 
   return (
     <>
@@ -99,12 +102,20 @@ const Profile = () => {
               <Text style={{...styles.menuItemText}}> Alterar Senha </Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setControlPicker(!controlPicker);
+            }}>
             <View style={styles.menuItem}>
               <Icon name='account-check-outline' size={30}style={{color: '#FF0000'}}/>
               <Text style={{...styles.menuItemText}}> Ajuda </Text>
             </View>
           </TouchableOpacity>
+          {
+            controlPicker ? 
+            <CreateTicket/>
+            : <></>
+          }
         </View>
         
         
