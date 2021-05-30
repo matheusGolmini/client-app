@@ -17,10 +17,11 @@ const ProfileEdit = () => {
     const [opacityButton, setOpacityButton] = useState<number>(0.5);
     const[name, setName] = useState<string>('');
     const[phone, setPhone] = useState<string>('');
+    const[cpf, setCpf] = useState<string>('');
     const [visible, setVisible ] = useState<boolean>(false);
 
     useEffect(() => {
-        if(!!name || !!phone || !! image){
+        if(!!name || !!phone || !! image || !!cpf){
             setDisableButton(false)
             setOpacityButton(1)
         }else {
@@ -112,6 +113,18 @@ const ProfileEdit = () => {
 
                     </View>
                     <View style={styles.action}>
+                        <FontAwesome  name='user-o' size={20}/>
+                        <TextInput 
+                            placeholder='CPF'
+                            placeholderTextColor='#666666'
+                            keyboardType='number-pad'
+                            autoCorrect={false}
+                            onChangeText={(val) => setCpf(val)}
+                            style={{marginLeft: 20, fontSize: 18}}
+                        />
+
+                    </View>
+                    <View style={styles.action}>
                         <FontAwesome  name='phone' size={20}/>
                         <TextInput 
                             placeholder='Telefone'
@@ -123,7 +136,6 @@ const ProfileEdit = () => {
                         />
 
                     </View>
-
                     
                     <View style={{alignItems: 'center'}}>
                         <TouchableOpacity 
