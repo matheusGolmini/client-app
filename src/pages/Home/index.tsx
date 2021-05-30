@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../../components/footer';
 import FlatListSkills from '../../components/flatListSkills';
 import { ISkills } from '../../interfaces';
-import { StatusBar } from 'react-native';
+import { Modal, StatusBar } from 'react-native';
+import Mock from '../../mocks/mock-detail-service';
+import ModalAddress from '../../components/ModalAddress';
 
 const Home = () => {
     const [skills, setSkills] = useState<ISkills[]>([]);
+    const [isModalAddressVisible, setIsModalAddressVisible] = useState<boolean>(false);
+
     useEffect(() => {
         getSKills();
+        setIsModalAddressVisible(Mock.getAddress() ? false : true)
     }, []);
 
     function getSKills() {
@@ -46,8 +51,15 @@ const Home = () => {
     if(!!skills.length){
         return (
             <>
-                <StatusBar barStyle="dark-content" backgroundColor='#A2C43A' translucent/>
+                <StatusBar barStyle="dark-content" backgroundColor={isModalAddressVisible? "white":'#A2C43A'} translucent/>
                 <FlatListSkills props={skills}/>
+                <Modal
+                    visible={isModalAddressVisible}
+                >
+                    <ModalAddress
+                        setIsModalAddressVisible={setIsModalAddressVisible}
+                    />
+                </Modal>  
                 <Footer props={'#A2C43A'}/>
             </>
         )
@@ -55,6 +67,13 @@ const Home = () => {
     }else {
         return (
             <>
+                <Modal
+                    visible={isModalAddressVisible}
+                >
+                    <ModalAddress
+                        setIsModalAddressVisible={setIsModalAddressVisible}
+                    />
+                </Modal>  
                 <Footer props={'#A2C43A'}/>
             </>
         )

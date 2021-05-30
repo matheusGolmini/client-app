@@ -111,6 +111,14 @@ const Profile = () => {
               <Text style={{...styles.menuItemText}}> Ajuda </Text>
             </View>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => goTo('ProfileEditAddress')}
+          >
+            <View style={styles.menuItem}>
+              <Icon name='home' size={30}style={{color: '#FF0000'}}/>
+              <Text style={{...styles.menuItemText}}> Alterar Endereço </Text>
+            </View>
+          </TouchableOpacity>
           {
             controlPicker ? 
             <CreateTicket/>

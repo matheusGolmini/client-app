@@ -15,6 +15,7 @@ const Register = () => {
     const [password, setPassword] = useState<string>('');
     const[email, setEmail] = useState<string>('');
     const[phone, setPhone] = useState<string>('');
+    const[cpf, setCpf] = useState<string>('');
     const [conPassword, setConPassword] = useState<string>('');
     const[conEmail, setConEmail] = useState<string>('');
     const[hidePass, setHidePass] = useState<boolean>(true);
@@ -25,7 +26,7 @@ const Register = () => {
     const [messageModal, setMessageModal ] = useState<string>('');
 
     useEffect(() => {
-        if(!!name && !!phone && !!conPassword && !!password && !!conEmail && !!email){
+        if(!!name && !!phone && !!conPassword && !!password && !!conEmail && !!email && !!cpf){
             setDisableButton(false)
             setOpacityButton(1)
         }else {
@@ -127,6 +128,18 @@ const Register = () => {
                             autoCorrect={false}
                             style={stylesGlobal.inputText}
                             onChangeText={(val) => setPhone(val)}
+                        />
+
+                    </View>
+
+                    <View style={stylesGlobal.input}>
+                        <TextInput 
+                            placeholder='CPF'
+                            placeholderTextColor='#4169E1'
+                            keyboardType='number-pad'
+                            autoCorrect={false}
+                            style={stylesGlobal.inputText}
+                            onChangeText={(val) => setCpf(val)}
                         />
 
                     </View>
