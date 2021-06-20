@@ -48,7 +48,7 @@ const ProfileServiceProvider = () => {
                     
                   </View>
                   <Text style={{...styles.text, color: params.footerColor}}>Experiência de 5 anos </Text>
-                  <Rating value={false}/>
+                  <Rating value={false} numberRating={3}/>
                   <Text style={{...styles.text, color: params.footerColor, alignItems: 'center', justifyContent: 'center'}}> Trabalhos </Text>
                 </View>
                 <Carousel values={{services, color: params.footerColor}}/>  

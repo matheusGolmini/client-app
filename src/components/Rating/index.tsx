@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function Reating(props: {value: boolean}) {
+export default function Rating(props: {value: boolean, size?: number, numberRating?: number }) {
     const [ maxReating, setMaxReating ] = useState<number[]>([1,2,3,4,5]);
     const [ defaultRating, setDefaultRating ] = useState<number>(0);
+    const sizeRating = props.size ? props.size : 50;
 
     if(!props.value) {
         useEffect(() => {
             //buscar o nivel do profissional;
-            setDefaultRating(2);
+            setDefaultRating(props.numberRating? props.numberRating : 0);
         }, []);
     }
     
@@ -33,7 +34,7 @@ export default function Reating(props: {value: boolean}) {
                             onPress={() => controlRating(item)}
                         >
                             <Image
-                                style={styles.image}
+                                style={{width: sizeRating, height: sizeRating}}
                                 key={key} 
                                 source={
                                 item <= defaultRating
@@ -44,6 +45,7 @@ export default function Reating(props: {value: boolean}) {
                         </TouchableOpacity>
 
                         : <Image 
+                            style={{width: sizeRating, height: sizeRating}}
                             key={key}
                             source={
                             item <= defaultRating
@@ -70,9 +72,5 @@ const styles =  StyleSheet.create({
         width: 10,
         height: 10,
         resizeMode: 'cover'
-    },
-    image: {
-        width: 50, 
-        height: 50
     }
 });

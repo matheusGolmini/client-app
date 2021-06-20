@@ -3,4 +3,5 @@ export interface IServiceProvider {
     name: string;
     time_experience: number;
     image: string;
+    numberRating: number;
 }

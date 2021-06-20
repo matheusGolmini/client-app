@@ -6,6 +6,7 @@ import styles from './styles';
 import { useNavigation } from '@react-navigation/core';
 import { FlatList } from 'react-native-gesture-handler';
 import { IServiceProvider } from '../../interfaces/serviceProvider';
+import Rating from '../../components/Rating';
 
 interface PropsComponent {
     props: {
@@ -42,6 +43,8 @@ export default function FlatListServiceProvider(propsComponent: PropsComponent) 
                             ? ` ${serviceProvider.time_experience } ano `: ` Menor que um ano ` 
                         }
                     </Text>
+
+                    <Rating size={35} value={false} numberRating={serviceProvider.numberRating}/>
                     
                     <Image style={{...styles.logo, marginTop: 20}} source={{uri: serviceProvider.image}}/>
                     <TouchableOpacity 
