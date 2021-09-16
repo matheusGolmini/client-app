@@ -53,7 +53,6 @@ const PageServiceProvider = () => {
     
     return (
         <>
-            <StatusBar barStyle="dark-content" backgroundColor={route.params.footerColor} translucent/>
             <FlatListServiceProvider props={{serviceProvider, color: route.params.footerColor}}/>
             <Footer props={route.params.footerColor}/>
         </>

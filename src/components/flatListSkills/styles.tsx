@@ -19,11 +19,14 @@ export default StyleSheet.create({
         borderRadius: 8,
         backgroundColor: '#fff',
         marginBottom: 16,
-        borderWidth: 10,
+        borderWidth: 2,
+        borderColor: '#605C99',
+        shadowRadius: 3.5,
+        elevation: 5
     },
     title: {
         fontSize: 20,
-        color: '#41414d',
+        color: '#302E4D',
         fontWeight: 'bold'
     },
     description: {
@@ -39,6 +42,7 @@ export default StyleSheet.create({
     },
     buttonText: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#302E4D',
     }
 });

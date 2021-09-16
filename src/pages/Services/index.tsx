@@ -1,101 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import React, { useState, useEffect } from "react";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import {
+  ListServiceInProgress,
+  ListUnpaidService,
+  ListServicesFinished,
+} from "../../components/flatListServices";
+import ReturnImageNotService from "../../components/notService";
+import { IDetailService } from "../../interfaces/service";
 
-import Footer from '../../components/footer';
-import {ListServiceInProgress, ListUnpaidService, ListServicesFinished} from '../../components/flatListServices';
-import ReturnImageNotService from '../../components/notService';
-import { IDetailService } from '../../interfaces/service';
-
-import mockService from '../../mocks/mock-detail-service';
-import { StatusBar } from 'react-native';
-
+import mockService from "../../mocks/mock-detail-service";
+import { View } from "react-native";
 
 function InitServices() {
   const [service, setService] = useState<IDetailService[]>([]);
   useEffect(() => {
-      getService();
+    getService();
   }, []);
 
   function getService() {
-    setService(mockService.getServicePayment)
+    setService(mockService.getServicePayment);
   }
-  if(service.length) {
-    return (
-      <ListUnpaidService props={{service}}/>
-    );
+  if (service.length) {
+    return <ListUnpaidService props={{ service }} />;
   }
-  return (
-    <ReturnImageNotService text="Nenhum Serviço para Pagar"/>
-  )
+  return <ReturnImageNotService text="Nenhum Serviço para Pagar" />;
 }
- 
+
 function ServicesInProgress() {
   const [service, setService] = useState<IDetailService[]>([]);
   useEffect(() => {
-      getService();
+    getService();
   }, []);
 
   function getService() {
-    setService(mockService.getServiceInProgress)
+    setService(mockService.getServiceInProgress);
   }
-  if(service.length) {
-    return (
-      <ListServiceInProgress props={{service}}/>
-    );
+  if (service.length) {
+    return <ListServiceInProgress props={{ service }} />;
   }
-  return (
-    <ReturnImageNotService text="Nenhum Serviço"/>
-  )
+  return <ReturnImageNotService text="Nenhum Serviço" />;
 }
 
 function ServicesFinished() {
   const [service, setService] = useState<IDetailService[]>([]);
   useEffect(() => {
-      getService();
+    getService();
   }, []);
 
   function getService() {
-    setService(mockService.getServiceServicesFinished())
+    setService(mockService.getServiceServicesFinished());
   }
-  if(service.length) {
-    return (
-      <ListServicesFinished props={{service}}/>
-    );
+  if (service.length) {
+    return <ListServicesFinished props={{ service }} />;
   }
-  return (
-    <ReturnImageNotService text="Nenhum Serviço Finalizado"/>
-  )
+  return <ReturnImageNotService text="Nenhum Serviço Finalizado" />;
 }
-
-
-
 
 const Tab = createMaterialTopTabNavigator();
 
-const Service = () =>  {
+const Service = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" backgroundColor="#A2C43A" translucent/>
+      <View
+        style={{
+          height: 40,
+          backgroundColor: "#302E4D",
+        }}
+      />
       <Tab.Navigator
         tabBarOptions={{
-          activeTintColor: '#A2C43A',
-          inactiveTintColor: '#DCDCDC',
+          activeTintColor: "#302E4D",
+          inactiveTintColor: "#DCDCDC",
           labelStyle: {
-            fontWeight: 'bold'
+            fontWeight: "bold",
           },
           indicatorStyle: {
-            backgroundColor: '#A2C43A'
-          }     
+            backgroundColor: "#302E4D",
+          },
         }}
-        style={{marginTop:24}}
       >
         <Tab.Screen name="Pagar Serviços" component={InitServices} />
-        <Tab.Screen name="Serviços em andamento" component={ServicesInProgress}/>
+        <Tab.Screen
+          name="Serviços em andamento"
+          component={ServicesInProgress}
+        />
         <Tab.Screen name="Serviços finalizados" component={ServicesFinished} />
       </Tab.Navigator>
-      <Footer props={'#A2C43A'}/>
     </>
   );
-}
+};
 
 export default Service;

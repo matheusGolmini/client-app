@@ -8,6 +8,7 @@ import ServiceProvider from './pages/ServiceProvider';
 import ProfileServiceProvider from './pages/ProfileServiceProvider';
 import Service from './pages/Services';
 import Profile from './pages/Profile';
+import MainTab from './MainTab';
 import ProfileEdit from './pages/ProfileEdit';
 import ProfileEditEmail from './pages/ProfileEdit/editEmail';
 import ProfileEditPassword from './pages/ProfileEdit/editPassword';
@@ -23,6 +24,7 @@ export default function Routes(){
                <AppStack.Screen name='Login' component={Login} />
                <AppStack.Screen name="Register" component={Register} />
                <AppStack.Screen name="Home" component={Home} />
+               <AppStack.Screen name='MainTab' component={MainTab} />
                <AppStack.Screen name="ServiceProvider" component={ServiceProvider} />
                <AppStack.Screen name="ProfileServiceProvider" component={ProfileServiceProvider} />
                <AppStack.Screen name="Service" component={Service} />

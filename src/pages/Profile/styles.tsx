@@ -4,15 +4,27 @@ const { width, height } = Dimensions.get('window');
 
 const styles =  StyleSheet.create({
   logo: {
-    width: 130,
-    height: 130,
+    width: 110,
+    height: 110,
     borderRadius: 100,
     borderWidth: 5,
     marginTop: 10,
   },
 
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "white",
+  },
+  
+  topBar: {
+    height: 0.16 * height,
+    backgroundColor: "#605C99",
+    borderBottomRightRadius: 65,
+  },
+
+  footer: {
+    flexDirection: "row",
+    width: 65,
   },
 
   userInfoSection: {
