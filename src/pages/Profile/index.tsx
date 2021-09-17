@@ -91,109 +91,34 @@ const Profile = () => {
           }}
         />
       </View>
-      <TouchableOpacity onPress={() => goTo("ProfileEdit")}>
-        <View style={{ paddingHorizontal: 160 }}>
-          <Entypo name="user" size={30} style={{ color: "black" }} />
-        </View>
-      </TouchableOpacity>
-      {/* <ScrollView 
-        style={{backgroundColor: '#fff'}}
-        showsVerticalScrollIndicator={false}
-      >
-      <View style={styles.container}>
-        <View style={{flexDirection: 'row', marginTop: 50, alignItems: 'center', margin: 20}}>
-          <Image style={styles.logo} source={require('../../assets/avatar.jpg')}/>
-          <View style={{marginLeft: 5}}>
-            <Text style={styles.text}>{client?.name}</Text>
+      <View style={{marginTop: 50}}>
+        <TouchableOpacity onPress={() => goTo("ProfileEditPeople")}>
+          <View style={{ ...styles.menuItem, marginTop: 20 }}>
+            <Entypo name="user" size={30} style={{ color: "#605C99" }} />
+            <Text style={{ ...styles.menuItemText }}>
+              Alterar dados pessoais
+            </Text>
           </View>
-
-          <TouchableOpacity
-            onPress={() => goTo('ProfileEdit')}
-          >
-            <View style={{paddingHorizontal: 80}}>
-              <Icon name='account-edit' size={30}style={{color: '#696969'}}/>
-            </View>
-          </TouchableOpacity>
-          
-        </View>
-        
-        <View style={styles.userInfoSection}>
-          <View style={styles.row}>
-            <Icon name='email' size={30} style={{color: '#4169E1'}}/>
-            <Text style={{...styles.text, fontSize: 20, marginLeft: 20}}>{client?.email}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => goTo("ProfileEditEmail")}>
+          <View style={styles.menuItem}>
+            <Entypo name="mail" size={30} style={{ color: "#605C99" }} />
+            <Text style={{ ...styles.menuItemText }}> Alterar e-mail </Text>
           </View>
-
-          <View style={styles.row}>
-            <Icon name='phone' size={30} style={{color: '#4169E1'}}/>
-            <Text style={{...styles.text, fontSize: 20, marginLeft: 20}}>{client?.phone}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => goTo("ProfileEditAddress")}>
+          <View style={styles.menuItem}>
+            <Entypo name="home" size={30} style={{ color: "#605C99" }} />
+            <Text style={{ ...styles.menuItemText }}> Alterar endereço </Text>
           </View>
-
-        </View>
-
-        <View style={styles.infoBoxWrapper}>
-          <View style={{
-            ...styles.infoBox,
-            borderRightColor: '#4169E1',
-            borderRightWidth: 3
-            
-          }}>
-            <Text style={{...styles.text, fontSize: 20}}> 0 </Text>
-            <Text style={{...styles.text, fontSize: 13, color:'#708090'}}> Serviços em aprovação </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => goTo("ProfileEditPassword")}>
+          <View style={styles.menuItem}>
+            <Entypo name="key" size={30} style={{ color: "#605C99" }} />
+            <Text style={{ ...styles.menuItemText }}> Alterar senha </Text>
           </View>
-
-          <View style={styles.infoBox}>
-            <Text style={{...styles.text, fontSize: 20}}> 20 </Text>
-            <Text style={{...styles.text, fontSize: 13, color:'#708090'}}> Serviços finalizados </Text>
-          </View>
-
-        </View>
-
-        <View style={styles.menuWrapper}>
-          <TouchableOpacity
-            onPress={() => goTo('ProfileEditEmail')}
-          >
-            <View style={styles.menuItem}>
-              <Icon name='email' size={30}style={{color: '#FF0000'}}/>
-              <Text style={{...styles.menuItemText}}> Alterar E-mail </Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => goTo('ProfileEditPassword')}
-          >
-            <View style={styles.menuItem}>
-              <Icon name='key' size={30}style={{color: '#FF0000'}}/>
-              <Text style={{...styles.menuItemText}}> Alterar Senha </Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              setControlPicker(!controlPicker);
-            }}>
-            <View style={styles.menuItem}>
-              <Icon name='account-check-outline' size={30}style={{color: '#FF0000'}}/>
-              <Text style={{...styles.menuItemText}}> Ajuda </Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => goTo('ProfileEditAddress')}
-          >
-            <View style={styles.menuItem}>
-              <Icon name='home' size={30}style={{color: '#FF0000'}}/>
-              <Text style={{...styles.menuItemText}}> Alterar Endereço </Text>
-            </View>
-          </TouchableOpacity>
-          {
-            controlPicker ? 
-            <CreateTicket/>
-            : <></>
-          }
-        </View>
-        
-        
-        
-       
+        </TouchableOpacity>
       </View>
-      </ScrollView> */}
     </View>
   );
 };
