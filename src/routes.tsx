@@ -25,7 +25,24 @@ export default function Routes() {
         <AppStack.Screen name="Register" component={Register} />
         <AppStack.Screen name="Home" component={Home} />
         <AppStack.Screen name="MainTab" component={MainTab} />
-        <AppStack.Screen name="ServiceProvider" component={ServiceProvider} />
+        <AppStack.Screen
+          name="ServiceProvider"
+          options={{
+            headerTintColor: "white",
+            title: "Trabalhadores",
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              color: "white",
+              justifyContent: "center",
+              alignItems: "center",
+            },
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#605C99",
+            },
+          }}
+          component={ServiceProvider}
+        />
         <AppStack.Screen
           name="ProfileServiceProvider"
           component={ProfileServiceProvider}

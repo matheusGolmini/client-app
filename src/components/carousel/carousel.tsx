@@ -8,14 +8,13 @@ const { width } = Dimensions.get('window');
 
 interface Carousel {
     services: IServicesImages[];
-    color: string
 }
 
 const Carousel = (data: {values: Carousel }) => {
     const scrollX = new Animated.Value(0)
     let position = Animated.divide(scrollX, width)
 
-    const {services, color} = data.values;
+    const {services} = data.values;
 
     if (data && services.length) {
         return (
@@ -31,7 +30,7 @@ const Carousel = (data: {values: Carousel }) => {
                     decelerationRate={"fast"}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
-                        return <CarouselItem item={{service: item, color}} />
+                        return <CarouselItem item={{service: item}} />
                     }}
                     onScroll={Animated.event(
                         [{ nativeEvent: { contentOffset: { x: scrollX } } }],
@@ -49,7 +48,7 @@ const Carousel = (data: {values: Carousel }) => {
                         return (
                             <Animated.View
                                 key={i}
-                                style={{ opacity, height: 10, width: 10, backgroundColor: color, margin: 8, borderRadius: 5 }}
+                                style={{ opacity, height: 10, width: 10, backgroundColor: '#302E4D', margin: 8, borderRadius: 5 }}
                             />
                         )
                     })}

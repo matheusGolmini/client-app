@@ -6,14 +6,13 @@ const { width, height } = Dimensions.get('window');
 
 interface CarouselItem {
     service: IServicesImages;
-    color: string;
 }
 
 const CarouselItem = (data: {item: CarouselItem }) => {
-    const  { service, color } = data.item
+    const  { service } = data.item
     return (
         <View style={styles.cardView}>
-            <Image style={{...styles.image, borderColor: color}} source={{ uri: service.url }} />
+            <Image style={{...styles.image}} source={{ uri: service.url }} />
         </View>
     )
 }
