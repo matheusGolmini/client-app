@@ -10,9 +10,13 @@ import stylesGlobal from "../../styles-global";
 import { useFormik } from "formik";
 import { personForm } from "./person.form";
 import { Ionicons } from "@expo/vector-icons";
-import { IControlProgress } from "..";
+import { IControlProgress, IData } from "..";
 
-const FormPerson = ({ index, setIndex }: IControlProgress) => {
+interface IFormPersonData extends IControlProgress {
+  setData: React.Dispatch<React.SetStateAction<IData | undefined>>;
+}
+
+const FormPerson = ({ index, setIndex, setData }: IFormPersonData) => {
   const [hidePass, setHidePass] = useState<boolean>(true);
   const [confirmHidePass, setConfirmHidePass] = useState<boolean>(true);
 
@@ -26,12 +30,22 @@ const FormPerson = ({ index, setIndex }: IControlProgress) => {
       name: "",
     },
     validationSchema: personForm,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {
+      setData({
+        firstName: formik.values.name,
+        lastName: formik.values.name,
+        email: formik.values.email,
+        phone: formik.values.phone,
+        password: formik.values.password,
+        cpf: "",
+        rg: "",
+        sex: "i",
+      });
+
       setTimeout(() => {
         setIndex((index += 1));
-      }, 100)
-      //Enivar para o backend
-      console.log(values);
+      }, 100);
+      
       resetForm();
     },
   });

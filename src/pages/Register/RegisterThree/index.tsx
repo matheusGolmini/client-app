@@ -9,15 +9,52 @@ import {
 } from "react-native";
 import stylesGlobal from "../../styles-global";
 import { useFormik } from "formik";
-import { IControlProgress } from "..";
+import { IControlProgress, IData } from "..";
 // import { Feather } from "@expo/vector-icons";
 // import ModalPicker from "../../../components/ModalPicker";
 // import MockService from "../../../mocks/mock-detail-service";
 import axios from "axios";
 import { editAddressForm } from "../../ProfileEdit/editAddress/address.form";
+import api from "../../../service/api";
 
-const RegisterThree = ({ index, setIndex }: IControlProgress) => {
- 
+interface IRegisterThree extends IControlProgress {
+  data: IData | undefined;
+}
+
+export interface IAddress {
+  country: string;
+  state: string;
+  city: string;
+  region: string;
+  street: string;
+  type: string;
+  zip: string;
+  number: string;
+  complement?: string;
+}
+
+const RegisterThree = ({ index, setIndex, data }: IRegisterThree) => {
+  const [btnState, setBtnState] = React.useState(false);
+
+  const createCliente = async (data: IData): Promise<any> => {
+    try {
+      const res = await api.post("client", data);
+      return res.data;
+    } catch (error) {
+      console.error("error", JSON.stringify(error));
+      throw new Error("Deu erro");
+    }
+  };
+
+  const addAddress = async (address: IAddress, id: string): Promise<any> => {
+    try {
+      return await api.post(`person-address/${id}`, address);
+    } catch (error) {
+      console.error("error", JSON.stringify(error));
+      throw new Error("Deu erro");
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       logradouro: "",
@@ -29,12 +66,29 @@ const RegisterThree = ({ index, setIndex }: IControlProgress) => {
       complemento: "",
     },
     validationSchema: editAddressForm,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {
+      setBtnState(true);
       //Enivar para o backend
+      if (data) {
+        const res = await createCliente(data);
+        addAddress(
+          {
+            country: "BR",
+            state: values.uf,
+            city: values.cidade,
+            region: values.bairro,
+            street: values.logradouro,
+            type: "default",
+            zip: values.cep,
+            number: values.numero,
+            complement: values.complemento,
+          },
+          res.id
+        );
+      }
       setTimeout(() => {
         setIndex((index += 1));
       }, 100);
-      console.log({ ...values });
       resetForm();
     },
   });
@@ -244,10 +298,17 @@ const RegisterThree = ({ index, setIndex }: IControlProgress) => {
             <TouchableOpacity
               style={{
                 ...stylesGlobal.button,
-                opacity: formik.touched.cep === undefined? 0.5 : !formik.isValid ? 0.5: 1
+                opacity:
+                  formik.touched.cep === undefined
+                    ? 0.5
+                    : !formik.isValid
+                    ? 0.5
+                    : 1,
               }}
               onPress={() => formik.handleSubmit()}
-              disabled={formik.touched.cep === undefined? true : !formik.isValid }
+              disabled={
+                btnState ? btnState : formik.touched.cep === undefined ? true : !formik.isValid
+              }
             >
               <Text style={stylesGlobal.buttonText}>Salvar</Text>
             </TouchableOpacity>

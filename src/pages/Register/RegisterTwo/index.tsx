@@ -10,10 +10,15 @@ import {
 } from "react-native";
 import stylesGlobal from "../../styles-global";
 import { useFormik } from "formik";
-import { IControlProgress } from "..";
+import { IControlProgress, IData } from "..";
 import { registerTwoForm } from "./registerTwo.form";
 
-const RegisterTwo = ({ index, setIndex }: IControlProgress) => {
+interface IRegisterTwo extends IControlProgress {
+  data: IData | undefined;
+  setData: React.Dispatch<React.SetStateAction<IData | undefined>>;
+}
+
+const RegisterTwo = ({ index, setIndex, data, setData }: IRegisterTwo) => {
   const [imageProfile, setImageProfile] = React.useState<string | null>(null);
 
   const pickImage = async (type: string) => {
@@ -25,27 +30,34 @@ const RegisterTwo = ({ index, setIndex }: IControlProgress) => {
     });
 
     if (!result.cancelled) {
-      setImageProfile(result.uri)
+      setImageProfile(result.uri);
     }
   };
-
+  
   const formik = useFormik({
     initialValues: {
-      name: "",
       cpf: "",
-      rg: ""
+      rg: "",
     },
     validationSchema: registerTwoForm,
-    onSubmit: (values, { resetForm }) => {
-      //Enivar para o backend
+    onSubmit: async (values, { resetForm }) => {
+      if (data) {
+        setData({
+          ...data,
+          cpf: values.cpf,
+          rg: values.rg,
+          imageProfile: imageProfile ? imageProfile : "i",
+          sex: 'i'
+        })
+      }
       setTimeout(() => {
         setIndex((index += 1));
-      }, 100)
-      console.log({ ...values, imageProfile });
+      }, 100);
       resetForm();
     },
   });
 
+ 
   return (
     <>
       <View
@@ -142,8 +154,7 @@ const RegisterTwo = ({ index, setIndex }: IControlProgress) => {
               style={{
                 ...stylesGlobal.button,
                 opacity:
-                  formik.touched.cpf === undefined ||
-                  imageProfile === null
+                  formik.touched.cpf === undefined || imageProfile === null
                     ? 0.5
                     : !formik.isValid
                     ? 0.5
@@ -151,8 +162,7 @@ const RegisterTwo = ({ index, setIndex }: IControlProgress) => {
               }}
               onPress={() => formik.handleSubmit()}
               disabled={
-                formik.touched.cpf === undefined ||
-                imageProfile === null
+                formik.touched.cpf === undefined || imageProfile === null
                   ? true
                   : !formik.isValid
               }
