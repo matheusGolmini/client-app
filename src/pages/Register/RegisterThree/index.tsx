@@ -15,7 +15,7 @@ import { IControlProgress, IData } from "..";
 // import MockService from "../../../mocks/mock-detail-service";
 import axios from "axios";
 import { editAddressForm } from "../../ProfileEdit/editAddress/address.form";
-import api from "../../../service/api";
+import api from "../../../service/config";
 
 interface IRegisterThree extends IControlProgress {
   data: IData | undefined;

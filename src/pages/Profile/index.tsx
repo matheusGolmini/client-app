@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "./styles";
 import { IClient } from "../../interfaces/client";
 import { useNavigation } from "@react-navigation/core";
@@ -58,6 +59,7 @@ const Profile = () => {
           <TouchableOpacity
             style={{ paddingHorizontal: width / 2 - 30 }}
             onPress={() => {
+              AsyncStorage.removeItem("TOKEN");
               goTo("Login");
             }}
           >
