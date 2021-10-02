@@ -7,11 +7,13 @@ import {
   View,
   TextInput,
   StyleSheet,
+  ActivityIndicator,
 } from "react-native";
 import stylesGlobal from "../../styles-global";
 import { useFormik } from "formik";
 import { IControlProgress, IData } from "..";
 import { registerTwoForm } from "./registerTwo.form";
+import { UploadService } from "../../../service/api/upload-service";
 
 interface IRegisterTwo extends IControlProgress {
   data: IData | undefined;
@@ -19,7 +21,8 @@ interface IRegisterTwo extends IControlProgress {
 }
 
 const RegisterTwo = ({ index, setIndex, data, setData }: IRegisterTwo) => {
-  const [imageProfile, setImageProfile] = React.useState<string | null>(null);
+  const [imageProfile, setImageProfile] = React.useState<any | null>(null);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const pickImage = async (type: string) => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -30,10 +33,18 @@ const RegisterTwo = ({ index, setIndex, data, setData }: IRegisterTwo) => {
     });
 
     if (!result.cancelled) {
-      setImageProfile(result.uri);
+      const image = {
+        name: "imageProfile",
+        size: result.width,
+        uri: result.uri,
+        type: "application/octet-stream",
+      } as any;
+      const formData = new FormData();
+      formData.append("file", image);
+      setImageProfile(formData);
     }
   };
-  
+
   const formik = useFormik({
     initialValues: {
       cpf: "",
@@ -42,22 +53,24 @@ const RegisterTwo = ({ index, setIndex, data, setData }: IRegisterTwo) => {
     validationSchema: registerTwoForm,
     onSubmit: async (values, { resetForm }) => {
       if (data) {
+        setIsLoading(true);
+        const url = await UploadService.uploadImage(imageProfile);
         setData({
           ...data,
           cpf: values.cpf,
           rg: values.rg,
-          imageProfile: imageProfile ? imageProfile : "i",
-          sex: 'i'
-        })
+          imageProfile: url,
+          sex: "i",
+        });
       }
       setTimeout(() => {
+        setIsLoading(false);
         setIndex((index += 1));
       }, 100);
       resetForm();
     },
   });
 
- 
   return (
     <>
       <View
@@ -149,27 +162,37 @@ const RegisterTwo = ({ index, setIndex, data, setData }: IRegisterTwo) => {
             />
           </TouchableOpacity>
 
-          <View style={{ alignItems: "center" }}>
-            <TouchableOpacity
-              style={{
-                ...stylesGlobal.button,
-                opacity:
+          {isLoading && (
+            <ActivityIndicator
+              size="large"
+              color="#605C99"
+              style={{ marginTop: 20 }}
+            />
+          )}
+
+          {!isLoading && (
+            <View style={{ alignItems: "center" }}>
+              <TouchableOpacity
+                style={{
+                  ...stylesGlobal.button,
+                  opacity:
+                    formik.touched.cpf === undefined || imageProfile === null
+                      ? 0.5
+                      : !formik.isValid
+                      ? 0.5
+                      : 1,
+                }}
+                onPress={() => formik.handleSubmit()}
+                disabled={
                   formik.touched.cpf === undefined || imageProfile === null
-                    ? 0.5
+                    ? true
                     : !formik.isValid
-                    ? 0.5
-                    : 1,
-              }}
-              onPress={() => formik.handleSubmit()}
-              disabled={
-                formik.touched.cpf === undefined || imageProfile === null
-                  ? true
-                  : !formik.isValid
-              }
-            >
-              <Text style={stylesGlobal.buttonText}>Salvar</Text>
-            </TouchableOpacity>
-          </View>
+                }
+              >
+                <Text style={stylesGlobal.buttonText}>Salvar</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </View>
     </>
