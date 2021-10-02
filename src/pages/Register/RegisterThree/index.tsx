@@ -6,6 +6,7 @@ import {
   TextInput,
   StyleSheet,
   Modal,
+  ActivityIndicator,
 } from "react-native";
 import stylesGlobal from "../../styles-global";
 import { useFormik } from "formik";
@@ -16,6 +17,7 @@ import { IControlProgress, IData } from "..";
 import axios from "axios";
 import { editAddressForm } from "../../ProfileEdit/editAddress/address.form";
 import api from "../../../service/config";
+import { useState } from "react-native-vector-icons/node_modules/@types/react";
 
 interface IRegisterThree extends IControlProgress {
   data: IData | undefined;
@@ -35,6 +37,7 @@ export interface IAddress {
 
 const RegisterThree = ({ index, setIndex, data }: IRegisterThree) => {
   const [btnState, setBtnState] = React.useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const createCliente = async (data: IData): Promise<any> => {
     try {
@@ -70,6 +73,7 @@ const RegisterThree = ({ index, setIndex, data }: IRegisterThree) => {
       setBtnState(true);
       //Enivar para o backend
       if (data) {
+        setIsLoading(true);
         const res = await createCliente(data);
         addAddress(
           {
@@ -87,6 +91,7 @@ const RegisterThree = ({ index, setIndex, data }: IRegisterThree) => {
         );
       }
       setTimeout(() => {
+        setIsLoading(false);
         setIndex((index += 1));
       }, 100);
       resetForm();
@@ -294,25 +299,39 @@ const RegisterThree = ({ index, setIndex, data }: IRegisterThree) => {
             />
           </View>
 
-          <View style={{ alignItems: "center" }}>
-            <TouchableOpacity
-              style={{
-                ...stylesGlobal.button,
-                opacity:
-                  formik.touched.cep === undefined
-                    ? 0.5
+          {isLoading && (
+            <ActivityIndicator
+              size="large"
+              color="#605C99"
+              style={{ marginTop: 20 }}
+            />
+          )}
+
+          {!isLoading && (
+            <View style={{ alignItems: "center" }}>
+              <TouchableOpacity
+                style={{
+                  ...stylesGlobal.button,
+                  opacity:
+                    formik.touched.cep === undefined
+                      ? 0.5
+                      : !formik.isValid
+                      ? 0.5
+                      : 1,
+                }}
+                onPress={() => formik.handleSubmit()}
+                disabled={
+                  btnState
+                    ? btnState
+                    : formik.touched.cep === undefined
+                    ? true
                     : !formik.isValid
-                    ? 0.5
-                    : 1,
-              }}
-              onPress={() => formik.handleSubmit()}
-              disabled={
-                btnState ? btnState : formik.touched.cep === undefined ? true : !formik.isValid
-              }
-            >
-              <Text style={stylesGlobal.buttonText}>Salvar</Text>
-            </TouchableOpacity>
-          </View>
+                }
+              >
+                <Text style={stylesGlobal.buttonText}>Salvar</Text>
+              </TouchableOpacity>
+            </View>
+          )}
           {/* <TouchableOpacity
             style={{ ...styles.buttonDocument }}
             onPress={() => setIsModalVisible(!isModalVisible)}
