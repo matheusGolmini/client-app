@@ -1,23 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Text,
   TouchableOpacity,
   View,
   TextInput,
   StyleSheet,
-  Modal,
   ActivityIndicator,
 } from "react-native";
 import stylesGlobal from "../../styles-global";
 import { useFormik } from "formik";
 import { IControlProgress, IData } from "..";
-// import { Feather } from "@expo/vector-icons";
-// import ModalPicker from "../../../components/ModalPicker";
-// import MockService from "../../../mocks/mock-detail-service";
 import axios from "axios";
 import { editAddressForm } from "../../ProfileEdit/editAddress/address.form";
 import api from "../../../service/config";
-import { useState } from "react-native-vector-icons/node_modules/@types/react";
 
 interface IRegisterThree extends IControlProgress {
   data: IData | undefined;
@@ -332,33 +327,6 @@ const RegisterThree = ({ index, setIndex, data }: IRegisterThree) => {
               </TouchableOpacity>
             </View>
           )}
-          {/* <TouchableOpacity
-            style={{ ...styles.buttonDocument }}
-            onPress={() => setIsModalVisible(!isModalVisible)}
-          >
-            <Text style={styles.buttonDocumentText}>
-              {!!stateSelected ? stateSelected : "Selecione um estado"}
-            </Text>
-            <Feather
-              name="arrow-down"
-              size={20}
-              style={{
-                color: "white",
-                paddingHorizontal: 15,
-              }}
-            />
-          </TouchableOpacity> */}
-          {/* <Modal
-            transparent={true}
-            animationType={"fade"}
-            visible={isModalVisible}
-          >
-            <ModalPicker
-              setIsModalVisible={setIsModalVisible}
-              setTypeSelected={setStateSelected}
-              data={MockService.getStates()}
-            />
-          </Modal> */}
         </View>
       </View>
     </>
