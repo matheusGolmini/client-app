@@ -31,9 +31,12 @@ const FormPerson = ({ index, setIndex, setData }: IFormPersonData) => {
     },
     validationSchema: personForm,
     onSubmit: async (values, { resetForm }) => {
+
+      const array = values.name.split('');
+
       setData({
-        firstName: formik.values.name,
-        lastName: formik.values.name,
+        firstName: array[0],
+        lastName: array[1],
         email: formik.values.email,
         phone: formik.values.phone,
         password: formik.values.password,
