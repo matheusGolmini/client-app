@@ -13,11 +13,13 @@ import { IClient } from "../../interfaces/client";
 import { useNavigation } from "@react-navigation/core";
 import { Entypo } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { IPerson } from "../../interfaces/person";
 
 const { width } = Dimensions.get("window");
 
 const Profile = () => {
   const [client, setClient] = useState<IClient>();
+  const [person, setPerson] = useState<IPerson>();
 
   const navigation = useNavigation();
 
@@ -29,6 +31,10 @@ const Profile = () => {
       name: "Matheus",
       phone: "41 997628216",
       avatar: "../../assets/avatar.jpg",
+    });
+    AsyncStorage.getItem("person").then((personString) => {
+      const person = JSON.parse(String(personString)) as IPerson;
+      setPerson(person);
     });
   }, []);
 
@@ -52,7 +58,7 @@ const Profile = () => {
             <Text
               style={{ ...styles.text, color: "white", marginHorizontal: 30 }}
             >
-              {client?.name}
+              {person?.firstName}
             </Text>
           </View>
 
@@ -70,7 +76,9 @@ const Profile = () => {
           <Image
             style={styles.logo}
             source={{
-              uri: "https://image.freepik.com/vetores-gratis/pintor-com-escova-de-rolo-e-pintura-balde-icone-dos-desenhos-animados-ilustracao-vetorial-conceito-de-icone-de-profissao-de-pessoas-isolado-vetor-premium-estilo-flat-cartoon_138676-1882.jpg",
+              uri: person?.imageProfile
+                ? person?.imageProfile
+                : "https://image.freepik.com/vetores-gratis/pintor-com-escova-de-rolo-e-pintura-balde-icone-dos-desenhos-animados-ilustracao-vetorial-conceito-de-icone-de-profissao-de-pessoas-isolado-vetor-premium-estilo-flat-cartoon_138676-1882.jpg",
             }}
           />
         </View>
@@ -93,7 +101,7 @@ const Profile = () => {
           }}
         />
       </View>
-      <View style={{marginTop: 50}}>
+      <View style={{ marginTop: 50 }}>
         <TouchableOpacity onPress={() => goTo("ProfileEditPeople")}>
           <View style={{ ...styles.menuItem, marginTop: 20 }}>
             <Entypo name="user" size={30} style={{ color: "#605C99" }} />

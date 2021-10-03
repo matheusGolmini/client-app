@@ -58,7 +58,6 @@ const EditPeople = () => {
   useEffect(() => {
     AsyncStorage.getItem("person").then((personString) => {
       const person = JSON.parse(String(personString)) as IPerson;
-      console.log("person", person);
       setPerson(person);
     });
   }, []);
