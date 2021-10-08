@@ -1,7 +1,6 @@
-export interface ISkills {
-    id: number;
-    title: string;
+export interface ISkill {
+    id: string;
+    name: string;
     description: string;
-    image: string;
-    color: string;
+    imageUrl: string;
 }
