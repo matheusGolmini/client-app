@@ -9,7 +9,6 @@ const Home = () => {
 
   useEffect(() => {
     SkillService.getSkills().then((data) => {
-      console.log("data: ", data);
       setSkills(data);
     });
   }, []);

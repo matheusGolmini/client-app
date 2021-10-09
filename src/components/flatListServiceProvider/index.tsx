@@ -1,17 +1,15 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Feather } from "@expo/vector-icons";
-
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/core";
 import { FlatList } from "react-native-gesture-handler";
-import { IServiceProvider } from "../../interfaces/serviceProvider";
 import Rating from "../../components/Rating";
+import { ServiceSkillResponse } from "../../service/api/service-provider-skill";
 
 interface PropsComponent {
   props: {
-    serviceProvider: IServiceProvider[];
-    color: string;
+    serviceProvider: ServiceSkillResponse[];
   };
 }
 
@@ -29,7 +27,7 @@ export default function FlatListServiceProvider(
       <FlatList
         data={propsComponent.props.serviceProvider}
         style={styles.taskList}
-        keyExtractor={(serviceProvider: IServiceProvider) =>
+        keyExtractor={(serviceProvider: ServiceSkillResponse) =>
           String(serviceProvider.id)
         }
         showsVerticalScrollIndicator={false}
@@ -37,26 +35,15 @@ export default function FlatListServiceProvider(
           <View style={{ ...styles.task }}>
             <Image
               style={{ ...styles.logo, marginTop: 5 }}
-              source={{ uri: serviceProvider.image }}
+              source={{
+                uri: serviceProvider.serviceProvider.idServiceProvider
+                  .imageProfile,
+              }}
             />
-            <Rating
-              size={35}
-              value={false}
-              numberRating={serviceProvider.numberRating}
-            />
-            <Text style={{ ...styles.text }}>Nome: {serviceProvider.name}</Text>
-
-            <Text style={{ ...styles.text, marginTop: 10 }}>
-              Experiência:
-              {serviceProvider.time_experience > 1
-                ? ` ${serviceProvider.time_experience} anos `
-                : serviceProvider.time_experience === 1
-                ? ` ${serviceProvider.time_experience} ano `
-                : ` Menor que um ano `}
+            <Rating size={35} value={false} numberRating={5} />
+            <Text style={{ ...styles.text }}>
+              Nome: {serviceProvider.serviceProvider.idServiceProvider.firstName}
             </Text>
-
-            
-
             <TouchableOpacity
               style={styles.tasksButton}
               onPress={() => navigateToSkill("#302E4D")}
