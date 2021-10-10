@@ -6,20 +6,20 @@ import {
   ListServicesFinished,
 } from "../../components/flatListServices";
 import ReturnImageNotService from "../../components/notService";
-import { IDetailService } from "../../interfaces/service";
-
-import mockService from "../../mocks/mock-detail-service";
 import { View } from "react-native";
+import {
+  ConstractService,
+  IConstractResponse,
+} from "../../service/api/contract-service";
 
 function InitServices() {
-  const [service, setService] = useState<IDetailService[]>([]);
+  const [service, setService] = useState<IConstractResponse[]>([]);
   useEffect(() => {
-    getService();
-  }, []);
+    ConstractService.getWaitingPayment().then(async (value) => {
+      setService(value);
+    });
+  });
 
-  function getService() {
-    setService(mockService.getServicePayment);
-  }
   if (service.length) {
     return <ListUnpaidService props={{ service }} />;
   }
@@ -27,14 +27,13 @@ function InitServices() {
 }
 
 function ServicesInProgress() {
-  const [service, setService] = useState<IDetailService[]>([]);
+  const [service, setService] = useState<IConstractResponse[]>([]);
   useEffect(() => {
-    getService();
-  }, []);
+    ConstractService.getInprogress().then(async (value) => {
+      setService(value);
+    });
+  });
 
-  function getService() {
-    setService(mockService.getServiceInProgress);
-  }
   if (service.length) {
     return <ListServiceInProgress props={{ service }} />;
   }
@@ -42,14 +41,13 @@ function ServicesInProgress() {
 }
 
 function ServicesFinished() {
-  const [service, setService] = useState<IDetailService[]>([]);
+  const [service, setService] = useState<IConstractResponse[]>([]);
   useEffect(() => {
-    getService();
-  }, []);
+    ConstractService.getFinished().then(async (value) => {
+      setService(value);
+    });
+  });
 
-  function getService() {
-    setService(mockService.getServiceServicesFinished());
-  }
   if (service.length) {
     return <ListServicesFinished props={{ service }} />;
   }

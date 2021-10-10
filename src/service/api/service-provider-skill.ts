@@ -53,6 +53,12 @@ export class ServiceProviderSkillService {
         return res.data;
     }
 
+    static async getSkillByServiceProvider(serviceProviderId: string): Promise<ServiceSkillResponse[]> {
+      const jwt = await this.getJwt();
+      const res = await api.get<ServiceSkillResponse[]>(`service-provider-skill/service-provider/${serviceProviderId}`, {headers: {Authorization: jwt}});
+      return res.data;
+    };
+
     private static async getJwt(): Promise<string> {
         return `Bearer ${ await AsyncStorage.getItem("TOKEN")}`
     }
