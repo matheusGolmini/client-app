@@ -22,12 +22,14 @@ import {
   GetServiceProviderResponse,
   ServiceProviderService,
 } from "../../service/api/service-provider-service";
+import { ServiceProviderSkillService } from "../../service/api/service-provider-skill";
 
 const { width } = Dimensions.get("window");
 
 const ProfileServiceProvider = () => {
   const { params } = useRoute<IPropUseRoute<{ serviceProviderId: string }>>();
   const [services, setServices] = useState<IServicesImages[]>([]);
+  const [skillName, setSkillName] = useState<string>();
   const [serviceProvider, setServiceProvider] =
     useState<GetServiceProviderResponse>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -39,9 +41,23 @@ const ProfileServiceProvider = () => {
       params.serviceProviderId
     ).then((value) => {
       setServiceProvider(value);
-      setIsLoading(false);
+      let images: IServicesImages[] = [];
+      if (value?.imageServices && value.imageServices.length > 0) {
+        images = value.imageServices.map((url: string, index: number) => {
+          return {
+            id: String(index),
+            url,
+          };
+        });
+      }
+      setServices(images);
+      ServiceProviderSkillService.getSkillByServiceProvider(
+        value.idServiceProvider.id
+      ).then((res) => {
+        setSkillName(res.skill.name);
+        setIsLoading(false);
+      });
     });
-    setServices(servicesImages);
   }, []);
 
   function contactServiceProvider(text: string, phone: string) {
@@ -126,7 +142,7 @@ const ProfileServiceProvider = () => {
                 alignItems: "center",
               }}
             >
-              <Text style={{ ...styles.text }}>Pintor</Text>
+              <Text style={{ ...styles.text }}>{skillName}</Text>
               <View style={styles.styleImageButton}>
                 <TouchableOpacity
                   style={{
@@ -146,17 +162,17 @@ const ProfileServiceProvider = () => {
                 </TouchableOpacity>
               </View>
             </View>
-            <Text style={{ ...styles.text }}>Experiência de 5 anos</Text>
-
-            <Text
-              style={{
-                ...styles.text,
-              }}
-            >
-              Trabalhos
-            </Text>
+            {services.length > 0 && (
+              <Text
+                style={{
+                  ...styles.text,
+                }}
+              >
+                Trabalhos
+              </Text>
+            )}
           </View>
-          <Carousel values={{ services }} />
+          {services.length > 0 && <Carousel values={{ services }} />}
         </>
       )}
     </View>

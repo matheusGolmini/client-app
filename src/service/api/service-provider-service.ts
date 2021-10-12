@@ -4,7 +4,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { IPerson } from "../../interfaces/person";
 
 export interface GetServiceProviderResponse {
-    idServiceProvider: IPerson
+    idServiceProvider: IPerson,
+    imageServices: string[],
 }
 
 export class ServiceProviderService {
@@ -12,6 +13,7 @@ export class ServiceProviderService {
     static async getServiceProviderById(serviceProviderId: string): Promise<GetServiceProviderResponse> {
         const jwt = await this.getJwt();
         const res = await api.get<GetServiceProviderResponse>(`provider/${serviceProviderId}`, {headers: {Authorization: jwt}});
+        console.log('data: --->', res.data)
         return res.data;
     };
 
