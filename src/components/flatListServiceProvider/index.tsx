@@ -18,37 +18,40 @@ export default function FlatListServiceProvider(
 ) {
   const navigation = useNavigation();
 
-  function navigateToSkill(footerColor: string) {
-    navigation.navigate("ProfileServiceProvider", { footerColor });
+  function navigateToSkill(serviceProviderId: string) {
+    navigation.navigate("ProfileServiceProvider", { serviceProviderId });
   }
 
   return (
     <View style={styles.container}>
       <FlatList
         data={propsComponent.props.serviceProvider}
-        style={styles.taskList}
         keyExtractor={(serviceProvider: ServiceSkillResponse) =>
           String(serviceProvider.id)
         }
         showsVerticalScrollIndicator={false}
         renderItem={({ item: serviceProvider }) => (
           <View style={{ ...styles.task }}>
-            <Image
-              style={{ ...styles.logo, marginTop: 5 }}
-              source={{
-                uri: serviceProvider.serviceProvider.idServiceProvider
-                  .imageProfile,
-              }}
-            />
+            <View style={{ alignItems: "center" }}>
+              <Image
+                style={{ ...styles.logo, marginTop: 5 }}
+                source={{
+                  uri: serviceProvider.serviceProvider.idServiceProvider
+                    .imageProfile,
+                }}
+              />
+            </View>
+
             <Rating size={35} value={false} numberRating={5} />
             <Text style={{ ...styles.text }}>
-              Nome: {serviceProvider.serviceProvider.idServiceProvider.firstName}
+              Nome:{" "}
+              {serviceProvider.serviceProvider.idServiceProvider.firstName}
             </Text>
             <TouchableOpacity
               style={styles.tasksButton}
-              onPress={() => navigateToSkill("#302E4D")}
+              onPress={() => navigateToSkill(serviceProvider.idServiceProvider)}
             >
-              <Text style={{ ...styles.buttonText }}> Ver o perfil</Text>
+              <Text style={{ ...styles.text }}> Ver o perfil</Text>
               <Feather name="arrow-right" size={25} color={"#302E4D"} />
             </TouchableOpacity>
           </View>
