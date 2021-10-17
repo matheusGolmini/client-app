@@ -41,7 +41,8 @@ export interface ServiceSkillResponse {
       id_html: string | null,
       sex: string,
       isAdmin: boolean,
-      isBlocked: boolean
+      isBlocked: boolean,
+      rating: number | null;
     }
   }
 }

@@ -9,6 +9,7 @@ import ReturnImageNotService from "../../components/notService";
 import { View } from "react-native";
 import {
   ConstractService,
+  IConstractFinishi,
   IConstractResponse,
 } from "../../service/api/contract-service";
 
@@ -41,7 +42,7 @@ function ServicesInProgress() {
 }
 
 function ServicesFinished() {
-  const [service, setService] = useState<IConstractResponse[]>([]);
+  const [service, setService] = useState<IConstractFinishi[]>([]);
   useEffect(() => {
     ConstractService.getFinished().then(async (value) => {
       setService(value);

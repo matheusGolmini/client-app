@@ -41,8 +41,17 @@ export default function FlatListServiceProvider(
                 }}
               />
             </View>
-
-            <Rating size={35} value={false} numberRating={5} />
+            <Rating
+              size={35}
+              value={false}
+              numberRating={Math.trunc(
+                serviceProvider.serviceProvider.idServiceProvider.rating
+                  ? Number(
+                      serviceProvider.serviceProvider.idServiceProvider.rating
+                    )
+                  : 0
+              )}
+            />
             <Text style={{ ...styles.text }}>
               Nome:{" "}
               {serviceProvider.serviceProvider.idServiceProvider.firstName}

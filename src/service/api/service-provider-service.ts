@@ -13,7 +13,6 @@ export class ServiceProviderService {
     static async getServiceProviderById(serviceProviderId: string): Promise<GetServiceProviderResponse> {
         const jwt = await this.getJwt();
         const res = await api.get<GetServiceProviderResponse>(`provider/${serviceProviderId}`, {headers: {Authorization: jwt}});
-        console.log('data: --->', res.data)
         return res.data;
     };
 

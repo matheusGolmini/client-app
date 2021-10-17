@@ -33,7 +33,6 @@ function Payment(url: string) {
 
 export function ListUnpaidService(propsComponent: PropsComponent) {
   const navigation = useNavigation();
-  const [controlPicker, setControlPicker] = useState<boolean>(false);
   return (
     <View style={styles.container}>
       <FlatList
@@ -51,9 +50,6 @@ export function ListUnpaidService(propsComponent: PropsComponent) {
             <Text style={{ ...styles.text, marginTop: 15 }}>
               {service.skillName} {service.firstName}
             </Text>
-            {/* <Text style={{ ...styles.text }}>
-              Dias estimados: {service.days} dias
-            </Text> */}
             <Text style={{ ...styles.text }}>
               Acordo: {service.briefDescription}
             </Text>
@@ -89,14 +85,13 @@ export function ListUnpaidService(propsComponent: PropsComponent) {
             <TouchableOpacity
               style={{ ...styles.tasksButton2 }}
               onPress={() => {
-                navigation.navigate("Help", { idService: service.id })
+                navigation.navigate("Help", { idService: service.id });
               }}
             >
               <Text style={{ ...styles.buttonText, color: "white" }}>
                 Ajuda
               </Text>
             </TouchableOpacity>
-            {/* {service.help_open ? <CreateTicket service={service} /> : <></>} */}
           </View>
         )}
       />
@@ -187,7 +182,7 @@ export function ListServiceInProgress(propsComponent: PropsComponent) {
                 <TouchableOpacity
                   style={{ ...styles.tasksButton2 }}
                   onPress={() => {
-                    navigation.navigate("Help", { idService: service.id })
+                    navigation.navigate("Help", { idService: service.id });
                   }}
                 >
                   <Text style={{ ...styles.buttonText, color: "white" }}>
@@ -236,12 +231,12 @@ export function ListServicesFinished(propsComponent: PropsComponent) {
               Valor pago: {service.amountTotal} reais
             </Text>
 
-            <Rating value={true} />
+            <Rating value={true} contract={service} />
 
             <TouchableOpacity
               style={{ ...styles.tasksButton2 }}
               onPress={() => {
-                navigation.navigate("Help", { idService: service.id })
+                navigation.navigate("Help", { idService: service.id });
               }}
             >
               <Text style={{ ...styles.buttonText, color: "white" }}>

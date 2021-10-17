@@ -12,7 +12,6 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
-import { servicesImages } from "../../mocks/mock-images-jobs";
 import { IServicesImages } from "../../interfaces/servicesImges";
 import styles from "./styles";
 import Rating from "../../components/Rating";
@@ -128,7 +127,16 @@ const ProfileServiceProvider = () => {
               }}
             />
           </View>
-          <Rating value={false} numberRating={3} />
+          <Rating
+            value={false}
+            numberRating={Math.trunc(
+              serviceProvider &&
+                serviceProvider.idServiceProvider &&
+                serviceProvider.idServiceProvider.rating
+                ? Number(serviceProvider.idServiceProvider.rating)
+                : 0
+            )}
+          />
           <View
             style={{
               alignItems: "center",

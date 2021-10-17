@@ -26,6 +26,11 @@ export interface IConstractResponse extends IConstract {
     skillName: string;
 }
 
+
+export interface IConstractFinishi extends IConstractResponse {
+    rating?: number;
+}
+
 export class ConstractService {
 
 
