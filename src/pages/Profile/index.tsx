@@ -128,6 +128,12 @@ const Profile = () => {
             <Text style={{ ...styles.menuItemText }}> Alterar senha </Text>
           </View>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Help")}>
+          <View style={styles.menuItem}>
+            <Entypo name="help" size={30} style={{ color: "#605C99" }} />
+            <Text style={{ ...styles.menuItemText }}> Ajuda </Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
