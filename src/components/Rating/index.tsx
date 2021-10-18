@@ -20,7 +20,7 @@ export default function Rating(props: {
     if (!!props.contract) {
       RatingService.getRatingByContractId(props.contract.id)
         .then((value) => {
-          if(!!value) {
+          if (!!value) {
             setDefaultRating(value.rating);
             setRatingId(value.id);
             setIsUpdate(true);
@@ -48,8 +48,15 @@ export default function Rating(props: {
   async function saveOrUpdateRating(rating: number) {
     try {
       if (props.contract) {
+        console.log("auiquaqiuaiqu");
         if (!isUpdate) {
+          console.log("auiquaqiuaiqu -- 1", isUpdate);
           const res = await RatingService.createRating({
+            contract: props.contract.id,
+            ratedPerson: props.contract.serviceProviderId,
+            rating: rating,
+          });
+          console.log("auqiauqi", {
             contract: props.contract.id,
             ratedPerson: props.contract.serviceProviderId,
             rating: rating,
@@ -57,6 +64,7 @@ export default function Rating(props: {
           setIsUpdate(true);
           setRatingId(res.id);
         } else {
+          console.log("auiquaqiuaiqu -- 2", isUpdate);
           await RatingService.updateRating(
             {
               rating,
