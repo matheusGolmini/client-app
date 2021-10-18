@@ -25,7 +25,6 @@ export class RatingService {
         const personString = String(await AsyncStorage.getItem("person"));
         const person = JSON.parse(personString) as IPerson;
         data.ratingPerson = person.id;
-        console.log('Data', data)
         const jwt = await this.getJwt();
         const res = await api.post<IRatingResponse>(`rating`, data, {headers: {Authorization: jwt}});
         return res.data;

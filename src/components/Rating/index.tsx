@@ -20,9 +20,11 @@ export default function Rating(props: {
     if (!!props.contract) {
       RatingService.getRatingByContractId(props.contract.id)
         .then((value) => {
-          setDefaultRating(value.rating);
-          setRatingId(value.id);
-          setIsUpdate(true);
+          if(!!value) {
+            setDefaultRating(value.rating);
+            setRatingId(value.id);
+            setIsUpdate(true);
+          }
         })
         .catch(() => {
           setIsUpdate(false);
