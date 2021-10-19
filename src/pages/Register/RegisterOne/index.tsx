@@ -32,7 +32,7 @@ const FormPerson = ({ index, setIndex, setData }: IFormPersonData) => {
     validationSchema: personForm,
     onSubmit: async (values, { resetForm }) => {
 
-      const array = values.name.split('');
+      const array = values.name.split(' ');
 
       setData({
         firstName: array[0],
