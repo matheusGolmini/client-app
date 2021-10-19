@@ -26,7 +26,12 @@ export class RatingService {
         const person = JSON.parse(personString) as IPerson;
         data.ratingPerson = person.id;
         const jwt = await this.getJwt();
-        const res = await api.post<IRatingResponse>(`rating`, data, {headers: {Authorization: jwt}});
+        let res;
+        try {
+            res = await api.post<IRatingResponse>(`rating`, data, {headers: {Authorization: jwt}});
+        } catch(e:any) {
+            console.log(e.response.data);
+        }
         return res.data;
     };
 
