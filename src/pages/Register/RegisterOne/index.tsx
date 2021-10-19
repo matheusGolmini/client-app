@@ -38,7 +38,7 @@ const FormPerson = ({ index, setIndex, setData }: IFormPersonData) => {
         firstName: array[0],
         lastName: array[1],
         email: formik.values.email,
-        phone: formik.values.phone,
+        phone: formik.values.phone.includes('55')?  formik.values.phone : '55'+formik.values.phone,
         password: formik.values.password,
         cpf: "",
         rg: "",
