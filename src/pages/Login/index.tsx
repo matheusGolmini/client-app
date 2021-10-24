@@ -33,7 +33,7 @@ const Login = () => {
       try {
         setIsLoading(true);
         await ClientService.login({
-          username: values.email,
+          username: values.email.toLocaleLowerCase(),
           password: values.password,
         });
         setIsLoading(false);
@@ -76,7 +76,11 @@ const Login = () => {
             style={stylesGlobal.logo}
             source={require("../../assets/logo.jpg")}
           />
-          <ActivityIndicator size="large" color="#605C99" style={{marginTop: 20}} />
+          <ActivityIndicator
+            size="large"
+            color="#605C99"
+            style={{ marginTop: 20 }}
+          />
         </>
       )}
       {!isLoadingToken && (
@@ -159,7 +163,13 @@ const Login = () => {
               </View>
             ) : null}
 
-            {isLoading && <ActivityIndicator size="large" color="#605C99" style={{marginTop: 20}} />}
+            {isLoading && (
+              <ActivityIndicator
+                size="large"
+                color="#605C99"
+                style={{ marginTop: 20 }}
+              />
+            )}
 
             {!isLoading && (
               <View style={{ marginTop: 20 }}>
